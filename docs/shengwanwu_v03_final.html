@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>生万物论 v0.3 — 从论文到假说的研究引擎</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Songti SC","SimSun","Noto Serif SC",serif;background:#0a0a0f;color:#d0d0d8;line-height:1.8;padding:40px 20px}
+.container{max-width:900px;margin:0 auto}
+.hero{text-align:center;padding:60px 20px;background:radial-gradient(ellipse at center,rgba(218,165,32,0.08),transparent 70%);border-radius:20px;margin-bottom:40px}
+.hero h1{font-size:3em;color:#daa520;letter-spacing:0.2em;margin-bottom:10px;text-shadow:0 0 40px rgba(218,165,32,0.2)}
+.hero .subtitle{color:#8a8a98;font-size:1.2em;margin-bottom:20px}
+.author{text-align:center;margin:20px 0;padding:16px;background:rgba(218,165,32,0.05);border:1px solid rgba(218,165,32,0.1);border-radius:12px}
+.author-name{font-size:1.3em;color:#daa520;font-weight:bold}
+.author-info{color:#8a8a98;font-size:0.95em;margin-top:4px}
+.dao{text-align:center;font-size:1.4em;color:#daa520;margin:40px 0;letter-spacing:0.3em;opacity:0.9}
+.dao-line{margin:8px 0;transition:opacity 0.3s}
+.section{margin:40px 0;padding:30px;background:rgba(255,255,255,0.02);border-radius:16px;border:1px solid rgba(255,255,255,0.04)}
+.section h2{color:#daa520;font-size:1.6em;margin-bottom:16px;border-bottom:1px solid rgba(218,165,32,0.2);padding-bottom:10px}
+.section p{color:#c0c0c8;margin:10px 0}
+.arch-box{background:rgba(218,165,32,0.03);border-radius:12px;padding:24px;margin:16px 0}
+.arch-step{display:flex;align-items:flex-start;margin:16px 0}
+.arch-num{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#daa520,#b8860b);color:#0a0a0f;font-weight:bold;margin-right:16px;flex-shrink:0}
+.arch-content{flex:1}
+.arch-title{color:#daa520;font-weight:600;margin-bottom:4px}
+.arch-desc{color:#a0a0a8;font-size:0.95em}
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin:20px 0}
+.metric{background:rgba(255,255,255,0.03);border-radius:10px;padding:20px;text-align:center;border:1px solid rgba(255,255,255,0.05)}
+.metric-num{font-size:2.2em;color:#daa520;font-weight:bold}
+.metric-label{color:#8a8a98;font-size:0.9em;margin-top:4px}
+.result-table{width:100%;border-collapse:collapse;margin:16px 0}
+.result-table th{background:rgba(218,165,32,0.1);color:#daa520;padding:12px;text-align:left;font-size:0.9em}
+.result-table td{padding:12px;border-bottom:1px solid rgba(255,255,255,0.05);color:#c0c0c8;font-size:0.95em}
+.result-table tr:hover{background:rgba(255,255,255,0.02)}
+.tag{display:inline-block;padding:2px 10px;border-radius:10px;font-size:0.8em;margin:2px;background:rgba(218,165,32,0.1);color:#daa520}
+.footer{text-align:center;padding:40px;color:#505058;font-size:0.85em;border-top:1px solid rgba(255,255,255,0.05);margin-top:40px}
+@media(max-width:768px){.hero h1{font-size:2em}.dao{font-size:1.1em}}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="hero">
+  <h1>生 万 物 论</h1>
+  <div class="subtitle">从论文库到研究假说的自动发现引擎</div>
+  <div style="color:#6a6a78;font-size:0.85em;margin-top:8px">v0.3 · 2026年6月</div>
+</div>
+
+<div class="author">
+  <div class="author-name">王润圆</div>
+  <div class="author-info">昆明医科大学 · 营养与食品卫生学硕士</div>
+</div>
+
+<div class="dao">
+  <div class="dao-line">道 生 一</div>
+  <div class="dao-line">一 生 二</div>
+  <div class="dao-line">二 生 三</div>
+  <div class="dao-line">三 生 万 物</div>
+  <div style="margin-top:16px;font-size:0.6em;color:#6a6a78">——《道德经》第四十二章</div>
+</div>
+
+<div class="section">
+  <h2>🌿 缘起</h2>
+  <p>世间万般学问，散落于千万论文之中。如夜空繁星，各自璀璨，却鲜有人将其连缀成图。</p>
+  <p>《生万物论》所求者，非替代人之思考，乃为研究者提供一副"自动望远镜"——从浩瀚文献中，蒸馏知识、编织图谱、发现矛盾、生发假说。</p>
+  <p>一如道家所言：从混沌（原始论文库）中生出秩序（知识图谱），秩序中孕育变化（假说种子），变化中绽放万相（可行动的研究问题）。</p>
+</div>
+
+<div class="section">
+  <h2>☰ 三生架构</h2>
+  
+  <div class="arch-box">
+    <div class="arch-step">
+      <span class="arch-num">道</span>
+      <div class="arch-content">
+        <div class="arch-title">原始论文库 · 道之混沌</div>
+        <div class="arch-desc">arXiv PDF、书籍、数据库——未加工的知识矿藏。如"道"之初，浑然未分。</div>
+      </div>
+    </div>
+    
+    <div class="arch-step">
+      <span class="arch-num">一</span>
+      <div class="arch-content">
+        <div class="arch-title">蒸馏成库 · 道生一</div>
+        <div class="arch-desc">将论文全文蒸馏为结构化知识节点（method/finding/concept/limitation），如"一"之始立——从混沌中提取秩序。</div>
+        <div style="margin-top:8px">
+          <span class="tag">全文提取</span>
+          <span class="tag">PyMuPDF</span>
+          <span class="tag">trafilatura</span>
+          <span class="tag">JSONL</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="arch-step">
+      <span class="arch-num">二</span>
+      <div class="arch-content">
+        <div class="arch-title">图谱成网 · 一生二</div>
+        <div class="arch-desc">知识节点之间，以共享标签自动建立连接（edges），编织成跨论文知识图谱。在图谱中检测六种模式：方法缺失、概念矛盾、跨域桥梁、共享关键词、传递断链、枢纽共现。如"二"之对立——阴与阳，同与异，连接与断裂。</div>
+        <div style="margin-top:8px">
+          <span class="tag">共享tag→edges</span>
+          <span class="tag">6种检测模式</span>
+          <span class="tag">v0.2 scanner</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="arch-step">
+      <span class="arch-num">三</span>
+      <div class="arch-content">
+        <div class="arch-title">语义重构 · 二生三</div>
+        <div class="arch-desc">三层语义重构架构，将机械的图谱模式转化为有意义的科学假说：</div>
+        <div style="margin-top:8px;font-size:0.95em;color:#a0a0a8">
+          <strong style="color:#daa520">Layer 1</strong> — 图谱模式检测（v0.2）→ 原始假说候选<br>
+          <strong style="color:#daa520">Layer 2</strong> — 语义上下文组装 → 假说上下文包（蒸馏全文 + 模式语义 + 关联边）<br>
+          <strong style="color:#daa520">Layer 3</strong> — LLM语义重构 → 结构化研究问题（含实验方案 + 证伪条件）
+        </div>
+        <div style="margin-top:8px">
+          <span class="tag">类型特定prompt模板</span>
+          <span class="tag">并行分神处理</span>
+          <span class="tag">DeepSeek/Claude Code</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="arch-step">
+      <span class="arch-num">万</span>
+      <div class="arch-content">
+        <div class="arch-title">万物生发 · 三生万物</div>
+        <div class="arch-desc">从去重、排序后的假说池中，精选 Top-N 可行动研究问题。每条假说包含：可证伪声明、实验方案、评估指标、基线对比、预期瓶颈、新颖性/可行性/影响力评分。如"万物"之繁盛——从简单规则中，绽放出无尽的研究可能。</div>
+        <div style="margin-top:8px">
+          <span class="tag">去重</span>
+          <span class="tag">Grounding check</span>
+          <span class="tag">优先级排序</span>
+          <span class="tag">Top-20</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>📊 实测验证</h2>
+  <p>《生万物论》已在三个不同学科领域验证有效：</p>
+  
+  <table class="result-table">
+    <thead>
+      <tr>
+        <th>领域</th>
+        <th>论文</th>
+        <th>知识节点</th>
+        <th>原始假说</th>
+        <th>独特研究问题</th>
+        <th>Top精选</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>世界模型 (AI/ML)</td>
+        <td>25</td>
+        <td>231</td>
+        <td>352</td>
+        <td>107</td>
+        <td>Top-20</td>
+      </tr>
+      <tr>
+        <td>金星云层 (行星科学)</td>
+        <td>6</td>
+        <td>175</td>
+        <td>171</td>
+        <td>96</td>
+        <td>Top-20</td>
+      </tr>
+      <tr>
+        <td>金星云层 (物理版)</td>
+        <td>6</td>
+        <td>175</td>
+        <td>21</td>
+        <td>18</td>
+        <td>Top-15</td>
+      </tr>
+      <tr>
+        <td>太阳风 (天体物理)</td>
+        <td>3</td>
+        <td>50</td>
+        <td>36</td>
+        <td>10</td>
+        <td>7个未验证</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <div class="metric-grid">
+    <div class="metric">
+      <div class="metric-num">40</div>
+      <div class="metric-label">输入论文总数</div>
+    </div>
+    <div class="metric">
+      <div class="metric-num">631</div>
+      <div class="metric-label">蒸馏知识节点</div>
+    </div>
+    <div class="metric">
+      <div class="metric-num">580</div>
+      <div class="metric-label">生成假说总数</div>
+    </div>
+    <div class="metric">
+      <div class="metric-num">4</div>
+      <div class="metric-label">验证学科领域</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>🔬 技术栈</h2>
+  <p>运行于灵台（LingTai）生态，使用原生能力组合：</p>
+  <table class="result-table">
+    <thead>
+      <tr><th>环节</th><th>工具</th><th>说明</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>论文获取</td><td>curl + trafilatura + PyMuPDF</td><td>PDF/HTML全文提取</td></tr>
+      <tr><td>知识蒸馏</td><td>并行分神（daemon）</td><td>DeepSeek V4 Flash / Claude Code</td></tr>
+      <tr><td>图谱构建</td><td>Python（共享tag→edges）</td><td>自动化跨论文连接</td></tr>
+      <tr><td>假说检测</td><td>hypothesis_scan_v02.py</td><td>6种模式检测器</td></tr>
+      <tr><td>语义重构</td><td>hypothesis_reconstruct_v03.py</td><td>三层架构 + 类型特定prompt</td></tr>
+      <tr><td>假说处理</td><td>并行分神批处理</td><td>分批→派发→write-as-you-go→收结果</td></tr>
+      <tr><td>排序输出</td><td>v03_collect_and_rank.py</td><td>去重+grounding+优先级排序</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="section">
+  <h2>💭 设计哲学</h2>
+  <p><strong style="color:#daa520">由库成论法</strong>：不依赖预训练知识，一切假说从蒸馏的论文全文中生成。每条假说可追溯到源文献。</p>
+  <p><strong style="color:#daa520">六眼旁观</strong>：模式检测如六只眼睛，分别审视方法缺失、概念矛盾、跨域桥梁、关键词暗连、传递断裂、枢纽汇聚。多视角才能见全局。</p>
+  <p><strong style="color:#daa520">论证门与验证门</strong>：假说不经论证不成形，不经验证不出口。生成可追溯、可证伪、可验证的候选，不自动证明理论。</p>
+  <p><strong style="color:#daa520">低功耗之道</strong>：确定性工作交脚本，判断性工作交LLM。人审稿拆小单元。失败时修最小失败层，不整炉重炼。</p>
+</div>
+
+<div class="section">
+  <h2>🔮 未来展望</h2>
+  <p><strong>v0.4 规划</strong>：引入 embedding-based 语义聚类（替代 tag-based），实现更精准的假说去重与主题归并。</p>
+  <p><strong>开放假说</strong>：研究者可输入自己的假说，引擎自动在图谱中寻找支持/反对证据。</p>
+  <p><strong>回流机制</strong>：验证结果回流知识库，形成"蒸馏→假说→实验→回流"的闭环。</p>
+</div>
+
+<div class="footer">
+  <p>《生万物论》 v0.3</p>
+  <p>作者：王润圆 · 昆明医科大学营养与食品卫生学硕士</p>
+  <p style="margin-top:8px;color:#6a6a78">道生一 · 一生二 · 二生三 · 三生万物</p>
+  <p style="margin-top:8px;color:#505058">Powered by 灵台 LingTai · 2026</p>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+{"source": "venus_001", "target": "venus_003", "source_node": "v1_003", "target_node": "v3_004", "shared_tag": "acidity", "type": "shared_concept"}
+{"source": "venus_001", "target": "venus_003", "source_node": "v1_003", "target_node": "v3_028", "shared_tag": "acidity", "type": "shared_concept"}
+{"source": "venus_001", "target": "venus_003", "source_node": "v1_004", "target_node": "v3_004", "shared_tag": "acidity", "type": "shared_concept"}
+{"source": "venus_001", "target": "venus_003", "source_node": "v1_004", "target_node": "v3_028", "shared_tag": "acidity", "type": "shared_concept"}
+{"source": "venus_001", "target": "venus_005", "source_node": "v1_003", "target_node": "v5_015", "shared_tag": "acidity", "type": "shared_concept"}
+{"source": "venus_001", "target": "venus_005", "source_node": "v1_004", "target_node": "v5_015", "shared_tag": "acidity", "type": "shared_concept"}
+{"source": "venus_003", "target": "venus_005", "source_node": "v3_004", "target_node": "v5_015", "shared_tag": "acidity", "type": "shared_concept"}
+{"source": "venus_003", "target": "venus_005", "source_node": "v3_028", "target_node": "v5_015", "shared_tag": "acidity", "type": "shared_concept"}
+{"source": "venus_001", "target": "venus_004", "source_node": "v1_004", "target_node": "v4_007", "shared_tag": "remote_sensing", "type": "shared_concept"}
+{"source": "venus_001", "target": "venus_004", "source_node": "v1_005", "target_node": "v4_010", "shared_tag": "microphysics", "type": "shared_concept"}
+{"source": "venus_001", "target": "venus_004", "source_node": "v1_017", "target_node": "v4_010", "shared_tag": "microphysics", "type": "shared_concept"}
+{"source": "venus_001", "target": "venus_003", "source_node": "v1_007", "target_node": "v3_006", "shared_tag": "phosphorus", "type": "shared_concept"}
+{"source": "venus_001", "target": "venus_003", "source_node": "v1_008", "target_node": "v3_029", "shared_tag": "so2", "type": "shared_concept"}
+{"source": "venus_001", "target": "venus_003", "source_node": "v1_012", "target_node": "v3_029", "shared_tag": "so2", "type": "shared_concept"}
+{"source": "venus_001", "target": "venus_007", "source_node": "v1_014", "target_node": "v7_021", "shared_tag": "albedo", "type": "shared_concept"}
+{"source": "venus_001", "target": "venus_007", "source_node": "v1_026", "target_node": "v7_021", "shared_tag": "albedo", "type": "shared_concept"}
+{"source": "venus_001", "target": "venus_004", "source_node": "v1_030", "target_node": "v4_002", "shared_tag": "venera", "type": "shared_concept"}
+{"source": "venus_001", "target": "venus_002", "source_node": "v1_034", "target_node": "v2_004", "shared_tag": "habitability", "type": "shared_concept"}
+{"source": "venus_001", "target": "venus_002", "source_node": "v1_035", "target_node": "v2_004", "shared_tag": "habitability", "type": "shared_concept"}
+{"source": "venus_001", "target": "venus_005", "source_node": "v1_034", "target_node": "v5_016", "shared_tag": "habitability", "type": "shared_concept"}
+{"source": "venus_001", "target": "venus_005", "source_node": "v1_034", "target_node": "v5_017", "shared_tag": "habitability", "type": "shared_concept"}
+{"source": "venus_001", "target": "venus_005", "source_node": "v1_035", "target_node": "v5_016", "shared_tag": "habitability", "type": "shared_concept"}
+{"source": "venus_001", "target": "venus_005", "source_node": "v1_035", "target_node": "v5_017", "shared_tag": "habitability", "type": "shared_concept"}
+{"source": "venus_002", "target": "venus_005", "source_node": "v2_004", "target_node": "v5_016", "shared_tag": "habitability", "type": "shared_concept"}
+{"source": "venus_002", "target": "venus_005", "source_node": "v2_004", "target_node": "v5_017", "shared_tag": "habitability", "type": "shared_concept"}
+{"source": "venus_001", "target": "venus_002", "source_node": "v1_038", "target_node": "v2_004", "shared_tag": "cloud_layer", "type": "shared_concept"}
+{"source": "venus_001", "target": "venus_003", "source_node": "v1_038", "target_node": "v3_003", "shared_tag": "temperature", "type": "shared_concept"}
+{"source": "venus_001", "target": "venus_005", "source_node": "v1_038", "target_node": "v5_016", "shared_tag": "temperature", "type": "shared_concept"}
+{"source": "venus_003", "target": "venus_005", "source_node": "v3_003", "target_node": "v5_016", "shared_tag": "temperature", "type": "shared_concept"}
+{"source": "venus_001", "target": "venus_003", "source_node": "v1_038", "target_node": "v3_031", "shared_tag": "extremophiles", "type": "shared_concept"}
+{"source": "venus_002", "target": "venus_003", "source_node": "v2_004", "target_node": "v3_031", "shared_tag": "extremophiles", "type": "shared_concept"}
+{"source": "venus_001", "target": "venus_002", "source_node": "v1_039", "target_node": "v2_001", "shared_tag": "astrobiology", "type": "shared_concept"}
+{"source": "venus_001", "target": "venus_002", "source_node": "v1_039", "target_node": "v2_009", "shared_tag": "astrobiology", "type": "shared_concept"}
+{"source": "venus_001", "target": "venus_005", "source_node": "v1_039", "target_node": "v5_032", "shared_tag": "astrobiology", "type": "shared_concept"}
+{"source": "venus_002", "target": "venus_005", "source_node": "v2_001", "target_node": "v5_032", "shared_tag": "astrobiology", "type": "shared_concept"}
+{"source": "venus_002", "target": "venus_005", "source_node": "v2_009", "target_node": "v5_032", "shared_tag": "astrobiology", "type": "shared_concept"}
+{"source": "venus_001", "target": "venus_005", "source_node": "v1_040", "target_node": "v5_011", "shared_tag": "oxygen", "type": "shared_concept"}
+{"source": "venus_001", "target": "venus_007", "source_node": "v1_046", "target_node": "v7_016", "shared_tag": "gcm", "type": "shared_concept"}
+{"source": "venus_001", "target": "venus_004", "source_node": "v1_049", "target_node": "v4_008", "shared_tag": "atmospheric_dynamics", "type": "shared_concept"}
+{"source": "venus_001", "target": "venus_004", "source_node": "v1_050", "target_node": "v4_013", "shared_tag": "future_missions", "type": "shared_concept"}
+{"source": "venus_001", "target": "venus_005", "source_node": "v1_050", "target_node": "v5_032", "shared_tag": "envision", "type": "shared_concept"}
+{"source": "venus_001", "target": "venus_003", "source_node": "v1_050", "target_node": "v3_027", "shared_tag": "davinci", "type": "shared_concept"}
+{"source": "venus_003", "target": "venus_005", "source_node": "v3_027", "target_node": "v5_032", "shared_tag": "davinci", "type": "shared_concept"}
+{"source": "venus_003", "target": "venus_007", "source_node": "v3_003", "target_node": "v7_004", "shared_tag": "venus atmosphere", "type": "shared_concept"}
+{"source": "venus_003", "target": "venus_007", "source_node": "v3_003", "target_node": "v7_025", "shared_tag": "venus atmosphere", "type": "shared_concept"}
+{"source": "venus_003", "target": "venus_007", "source_node": "v3_005", "target_node": "v7_004", "shared_tag": "venus atmosphere", "type": "shared_concept"}
+{"source": "venus_003", "target": "venus_007", "source_node": "v3_005", "target_node": "v7_025", "shared_tag": "venus atmosphere", "type": "shared_concept"}
+{"source": "venus_003", "target": "venus_005", "source_node": "v3_004", "target_node": "v5_001", "shared_tag": "sulfuric acid", "type": "shared_concept"}
+{"source": "venus_003", "target": "venus_005", "source_node": "v3_004", "target_node": "v5_016", "shared_tag": "sulfuric acid", "type": "shared_concept"}
+{"source": "venus_003", "target": "venus_005", "source_node": "v3_016", "target_node": "v5_001", "shared_tag": "sulfuric acid", "type": "shared_concept"}
+{"source": "venus_003", "target": "venus_005", "source_node": "v3_016", "target_node": "v5_016", "shared_tag": "sulfuric acid", "type": "shared_concept"}
+{"source": "venus_003", "target": "venus_005", "source_node": "v3_007", "target_node": "v5_028", "shared_tag": "oxidation", "type": "shared_concept"}
+{"source": "venus_003", "target": "venus_005", "source_node": "v3_011", "target_node": "v5_012", "shared_tag": "water activity", "type": "shared_concept"}
+{"source": "venus_003", "target": "venus_005", "source_node": "v3_011", "target_node": "v5_015", "shared_tag": "water activity", "type": "shared_concept"}
+{"source": "venus_003", "target": "venus_005", "source_node": "v3_011", "target_node": "v5_005", "shared_tag": "sulfuric acid concentration", "type": "shared_concept"}
+{"source": "venus_003", "target": "venus_005", "source_node": "v3_018", "target_node": "v5_015", "shared_tag": "venus clouds", "type": "shared_concept"}
+{"source": "venus_003", "target": "venus_005", "source_node": "v3_018", "target_node": "v5_016", "shared_tag": "venus clouds", "type": "shared_concept"}
+{"source": "venus_003", "target": "venus_005", "source_node": "v3_019", "target_node": "v5_012", "shared_tag": "hydrolysis", "type": "shared_concept"}
+{"source": "venus_003", "target": "venus_005", "source_node": "v3_034", "target_node": "v5_012", "shared_tag": "hydrolysis", "type": "shared_concept"}
+{"source": "venus_003", "target": "venus_005", "source_node": "v3_028", "target_node": "v5_018", "shared_tag": "prebiotic chemistry", "type": "shared_concept"}
+{"source": "venus_003", "target": "venus_005", "source_node": "v3_028", "target_node": "v5_021", "shared_tag": "prebiotic chemistry", "type": "shared_concept"}
+{"source": "venus_003", "target": "venus_005", "source_node": "v3_033", "target_node": "v5_024", "shared_tag": "future work", "type": "shared_concept"}
+{"source": "venus_003", "target": "venus_005", "source_node": "v3_033", "target_node": "v5_025", "shared_tag": "future work", "type": "shared_concept"}

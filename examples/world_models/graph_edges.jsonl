@@ -1,0 +1,175 @@
+{"edge_id": "e001", "source": "n001", "target": "n004", "edge_type": "component_of", "content": "RSSM is the core architecture whose parameters are optimized via the combined prediction, dynamics, and representation losses with free bits"}
+{"edge_id": "e002", "source": "n002", "target": "n003", "edge_type": "related_to", "content": "Symlog transformation enables twohot encoding by compressing target magnitudes, making exponentially spaced bins practical for distributional prediction"}
+{"edge_id": "e003", "source": "n005", "target": "n008", "edge_type": "enables", "content": "Return normalization enables a fixed entropy scale across domains, which stabilizes critic learning on lambda-returns of varying magnitudes"}
+{"edge_id": "e004", "source": "n001", "target": "n034", "edge_type": "contrasts_with", "content": "DreamerV3's RSSM uses discrete latent representations, while DIAMOND uses diffusion in continuous image space to preserve visual details"}
+{"edge_id": "e005", "source": "n006", "target": "n031", "edge_type": "contrasts_with", "content": "DreamerV3 collects Minecraft diamonds from scratch while TD-MPC2 focuses on continuous control tasks; both use fixed hyperparameters across diverse domains"}
+{"edge_id": "e006", "source": "n027", "target": "n001", "edge_type": "contrasts_with", "content": "TD-MPC2's implicit (decoder-free) world model contrasts with DreamerV3's RSSM which uses explicit reconstruction for representation learning"}
+{"edge_id": "e007", "source": "n028", "target": "n002", "edge_type": "parallel_to", "content": "SimNorm's simplicial embedding and symlog transformation both serve to stabilize training across varying scales, but target different aspects (latent space vs prediction targets)"}
+{"edge_id": "e008", "source": "n011", "target": "n019", "edge_type": "related_to", "content": "Genie and Sora both learn generative interactive environments but Genie learns unsupervised latent actions from video while Sora uses text conditioning"}
+{"edge_id": "e009", "source": "n012", "target": "n054", "edge_type": "predecessor_of", "content": "Genie's unsupervised latent action learning concept parallels DrivingWorld's discrete action tokenization for controllable generation"}
+{"edge_id": "e010", "source": "n013", "target": "n020", "edge_type": "related_to", "content": "Genie's ST-transformer with linear spatial scaling parallels Sora's native resolution approach; both handle variable-length/size inputs efficiently"}
+{"edge_id": "e011", "source": "n011", "target": "n041", "edge_type": "influences", "content": "Genie's three-component architecture (tokenizer + action model + dynamics) conceptually informs Cosmos's tokenizer + WFM paradigm"}
+{"edge_id": "e012", "source": "n034", "target": "n038", "edge_type": "enables", "content": "DIAMOND's image-space diffusion world model enables the CSGO neural game engine application by operating directly in pixel space"}
+{"edge_id": "e013", "source": "n034", "target": "n001", "edge_type": "alternative_to", "content": "DIAMOND offers diffusion as an alternative to DreamerV3's discrete latent representations for world modeling, preserving visual details"}
+{"edge_id": "e014", "source": "n059", "target": "n001", "edge_type": "builds_on", "content": "RLVR-World's autoregressive world model formulation can be seen as a generalization applicable to DreamerV3-style discrete token world models"}
+{"edge_id": "e015", "source": "n060", "target": "n062", "edge_type": "enables", "content": "Verifiable rewards using LPIPS enable RLVR to improve video world models with few gradient steps, demonstrating task-aligned optimization"}
+{"edge_id": "e016", "source": "n065", "target": "n079", "edge_type": "related_to", "content": "RoboScape's dual-branch depth-RGB transformer and Infinite-World's hierarchical memory both extend autoregressive world models with auxiliary structural information"}
+{"edge_id": "e017", "source": "n066", "target": "n080", "edge_type": "parallel_to", "content": "RoboScape's keypoint dynamics and Infinite-World's uncertainty-aware action labeling both address physical/motion realism in world models"}
+{"edge_id": "e018", "source": "n048", "target": "n001", "edge_type": "categorizes", "content": "The world model survey categorizes DreamerV3 under implicit representation for decision-making (model-based RL branch)"}
+{"edge_id": "e019", "source": "n048", "target": "n019", "edge_type": "categorizes", "content": "The world model survey categorizes Sora-type video generation models under future prediction of the physical world"}
+{"edge_id": "e020", "source": "n049", "target": "n027", "edge_type": "related_to", "content": "JEPA's latent-space prediction philosophy aligns with TD-MPC2's joint-embedding prediction approach (both avoid pixel-space prediction)"}
+{"edge_id": "e021", "source": "n072", "target": "n073", "edge_type": "uses", "content": "World-in-World's closed-loop planning strategy relies on the unified action API to transform candidate plans into model-specific control inputs"}
+{"edge_id": "e022", "source": "n074", "target": "n075", "edge_type": "supports", "content": "The finding that visual quality ≠ task success motivates the conclusion that scaling post-training data is more effective than upgrading base generators"}
+{"edge_id": "e023", "source": "n054", "target": "n041", "edge_type": "related_to", "content": "DrivingWorld's GPT-style autoregressive approach is an instance of the autoregressive WFM paradigm explored in Cosmos"}
+{"edge_id": "e024", "source": "n055", "target": "n044", "edge_type": "related_to", "content": "DrivingWorld's temporal-aware VQ tokenizer and Cosmos's causal video tokenizer both extend image tokenization with temporal information"}
+{"edge_id": "e025", "source": "n041", "target": "n034", "edge_type": "encompasses", "content": "Cosmos's diffusion WFM approach generalizes DIAMOND's diffusion world modeling to Physical AI at scale"}
+{"edge_id": "e026", "source": "n029", "target": "n050", "edge_type": "instance_of", "content": "TD-MPC2's MPPI planning is a specific instance of the MPC framework described in the world model survey for policy generation"}
+{"edge_id": "e027", "source": "n065", "target": "n013", "edge_type": "builds_on", "content": "RoboScape's ST-Transformer blocks build on the same spatiotemporal attention paradigm as Genie's architecture"}
+{"edge_id": "e028", "source": "n079", "target": "n037", "edge_type": "addresses", "content": "Infinite-World's hierarchical memory addresses the long-horizon limitation shared by Genie (16 frames) and other world models"}
+{"edge_id": "e029", "source": "n003", "target": "n028", "edge_type": "parallel_to", "content": "DreamerV3's twohot distributional prediction and TD-MPC2's discrete regression both handle varying reward/return scales but use different mechanisms"}
+{"edge_id": "e030", "source": "n042", "target": "n043", "edge_type": "produces", "content": "Cosmos's video curation pipeline produces the filtered 100M clips from 20M hours of raw video through 5 processing steps"}
+{"edge_id": "e031", "source": "n081", "target": "n084", "edge_type": "informed_by", "content": "Infinite-World's revisit-dense finetuning strategy is directly informed by the pilot study showing topological density matters more than data quantity"}
+{"edge_id": "e032", "source": "n011", "target": "n015", "edge_type": "demonstrates", "content": "Genie demonstrates graceful scaling (40M-2.7B), consistent with Sora and Cosmos showing that world model performance improves with scale"}
+{"edge_id": "e033", "source": "n007", "target": "n007", "edge_type": "self_reference", "content": "DreamerV3's performance rests on unsupervised reconstruction loss, suggesting future pretraining on unsupervised data"}
+{"edge_id": "e034", "source": "n056", "target": "n057", "edge_type": "enables", "content": "DrivingWorld's token dropout and balanced attention enable 40+ second generation by mitigating autoregressive drift and ensuring control"}
+{"edge_id": "e035", "source": "n062", "target": "n069", "edge_type": "supports", "content": "RLVR-World's improved video world model quality supports RoboScape's finding that better world models improve downstream policy training"}
+{"edge_id": "e036", "source": "n041", "target": "n045", "edge_type": "enables", "content": "Cosmos's pre-trained WFMs (diffusion + autoregressive) enable post-training for camera control, robotics, and driving applications"}
+{"edge_id": "e037", "source": "n016", "target": "n011", "edge_type": "demonstrates", "content": "Genie's latent action transfer to CoinRun demonstrates the foundation world model's utility for training generalist agents"}
+{"edge_id": "e038", "source": "n076", "target": "n072", "edge_type": "evaluated_by", "content": "World-in-World's four embodied tasks (AR, A-EQA, ImageNav, Manipulation) are evaluated through the closed-loop online planning strategy"}
+{"edge_id": "e039", "source": "n032", "target": "n031", "edge_type": "enables", "content": "TD-MPC2's task embeddings and action masking enable the 317M parameter multi-task agent across 80 tasks and multiple embodiments"}
+{"edge_id": "e040", "source": "n022", "target": "n019", "edge_type": "component_of", "content": "Sora's caption improvement approach (DALL-E 3-style) is part of the instruction-following mechanism alongside the diffusion transformer"}
+{"edge_id": "e041", "source": "n019", "target": "n024", "edge_type": "analyzed_by", "content": "The Sora review paper reverse-engineers Sora's diffusion transformer architecture including cascade structure and v-parameterization from technical reports"}
+{"edge_id": "e042", "source": "n023", "target": "n025", "edge_type": "qualified_by", "content": "Sora's emergent 3D consistency abilities are qualified by limitations in physical plausibility (objects passing through each other)"}
+{"edge_id": "e043", "source": "n070", "target": "n068", "edge_type": "enables", "content": "RoboScape's data pipeline with physics annotations enables the improved performance over baselines in video quality evaluation"}
+{"edge_id": "e044", "source": "n080", "target": "n082", "edge_type": "enables", "content": "Infinite-World's uncertainty-aware labeling enables robust action control over 1000+ frames despite noisy real-world pose estimates"}
+{"edge_id": "e045", "source": "n021", "target": "n020", "edge_type": "component_of", "content": "Sora's spatial-temporal VAE compression produces the spacetime latent patches that native resolution training operates on"}
+{"edge_id": "e1", "source": "n105", "target": "n106", "relation": "uses_architecture", "weight": 1.0}
+{"edge_id": "e2", "source": "n105", "target": "n107", "relation": "uses_method", "weight": 1.0}
+{"edge_id": "e3", "source": "n105", "target": "n108", "relation": "uses_method", "weight": 1.0}
+{"edge_id": "e4", "source": "n105", "target": "n109", "relation": "trained_with", "weight": 1.0}
+{"edge_id": "e5", "source": "n107", "target": "n106", "relation": "complements", "weight": 0.8}
+{"edge_id": "e6", "source": "n108", "target": "n106", "relation": "complements", "weight": 0.8}
+{"edge_id": "e7", "source": "n110", "target": "n106", "relation": "validates", "weight": 0.9}
+{"edge_id": "e8", "source": "n110", "target": "n107", "relation": "validates", "weight": 0.9}
+{"edge_id": "e9", "source": "n110", "target": "n108", "relation": "validates", "weight": 0.9}
+{"edge_id": "e10", "source": "n111", "target": "n112", "relation": "enables", "weight": 0.8}
+{"edge_id": "e11", "source": "n113", "target": "n108", "relation": "feeds_into", "weight": 0.7}
+{"edge_id": "e12", "source": "n112", "target": "n114", "relation": "constrained_by", "weight": 0.7}
+{"edge_id": "e13", "source": "n115", "target": "n116", "relation": "uses_method", "weight": 1.0}
+{"edge_id": "e14", "source": "n115", "target": "n117", "relation": "uses_architecture", "weight": 1.0}
+{"edge_id": "e15", "source": "n115", "target": "n118", "relation": "uses_method", "weight": 1.0}
+{"edge_id": "e16", "source": "n116", "target": "n117", "relation": "feeds_into", "weight": 0.9}
+{"edge_id": "e17", "source": "n117", "target": "n118", "relation": "enables", "weight": 0.8}
+{"edge_id": "e18", "source": "n118", "target": "n119", "relation": "related_to", "weight": 0.8}
+{"edge_id": "e19", "source": "n120", "target": "n115", "relation": "validates", "weight": 0.9}
+{"edge_id": "e20", "source": "n121", "target": "n115", "relation": "validates", "weight": 0.9}
+{"edge_id": "e21", "source": "n122", "target": "n117", "relation": "validates", "weight": 0.9}
+{"edge_id": "e22", "source": "n122", "target": "n118", "relation": "validates", "weight": 0.9}
+{"edge_id": "e23", "source": "n123", "target": "n116", "relation": "implementation_of", "weight": 0.8}
+{"edge_id": "e24", "source": "n124", "target": "n116", "relation": "constrained_by", "weight": 0.7}
+{"edge_id": "e25", "source": "n125", "target": "n126", "relation": "uses_method", "weight": 1.0}
+{"edge_id": "e26", "source": "n125", "target": "n127", "relation": "uses_architecture", "weight": 1.0}
+{"edge_id": "e27", "source": "n125", "target": "n128", "relation": "uses_method", "weight": 1.0}
+{"edge_id": "e28", "source": "n125", "target": "n129", "relation": "uses_method", "weight": 1.0}
+{"edge_id": "e29", "source": "n126", "target": "n127", "relation": "feeds_into", "weight": 0.8}
+{"edge_id": "e30", "source": "n128", "target": "n127", "relation": "complements", "weight": 0.7}
+{"edge_id": "e31", "source": "n130", "target": "n126", "relation": "validates", "weight": 0.9}
+{"edge_id": "e32", "source": "n131", "target": "n134", "relation": "validates", "weight": 0.9}
+{"edge_id": "e33", "source": "n132", "target": "n129", "relation": "enabled_by", "weight": 0.8}
+{"edge_id": "e34", "source": "n133", "target": "n129", "relation": "validates", "weight": 0.9}
+{"edge_id": "e35", "source": "n135", "target": "n125", "relation": "constrained_by", "weight": 0.7}
+{"edge_id": "e36", "source": "n136", "target": "n137", "relation": "uses_method", "weight": 1.0}
+{"edge_id": "e37", "source": "n136", "target": "n138", "relation": "uses_method", "weight": 1.0}
+{"edge_id": "e38", "source": "n136", "target": "n139", "relation": "uses_method", "weight": 1.0}
+{"edge_id": "e39", "source": "n137", "target": "n138", "relation": "complements", "weight": 0.8}
+{"edge_id": "e40", "source": "n140", "target": "n137", "relation": "validates", "weight": 0.9}
+{"edge_id": "e41", "source": "n140", "target": "n138", "relation": "validates", "weight": 0.9}
+{"edge_id": "e42", "source": "n141", "target": "n137", "relation": "validates", "weight": 0.9}
+{"edge_id": "e43", "source": "n141", "target": "n138", "relation": "validates", "weight": 0.9}
+{"edge_id": "e44", "source": "n142", "target": "n138", "relation": "validates", "weight": 0.9}
+{"edge_id": "e45", "source": "n143", "target": "n139", "relation": "validates", "weight": 0.9}
+{"edge_id": "e46", "source": "n144", "target": "n137", "relation": "enabled_by", "weight": 0.8}
+{"edge_id": "e47", "source": "n144", "target": "n138", "relation": "enabled_by", "weight": 0.8}
+{"edge_id": "e48", "source": "n145", "target": "n136", "relation": "implementation_of", "weight": 0.8}
+{"edge_id": "e49", "source": "n146", "target": "n137", "relation": "constrained_by", "weight": 0.7}
+{"edge_id": "e50", "source": "n147", "target": "n148", "relation": "uses_architecture", "weight": 1.0}
+{"edge_id": "e51", "source": "n147", "target": "n149", "relation": "uses_method", "weight": 1.0}
+{"edge_id": "e52", "source": "n148", "target": "n149", "relation": "enables", "weight": 0.8}
+{"edge_id": "e53", "source": "n150", "target": "n147", "relation": "validates", "weight": 0.9}
+{"edge_id": "e54", "source": "n151", "target": "n147", "relation": "validates", "weight": 0.9}
+{"edge_id": "e55", "source": "n152", "target": "n147", "relation": "validates", "weight": 0.9}
+{"edge_id": "e56", "source": "n153", "target": "n147", "relation": "implementation_of", "weight": 0.8}
+{"edge_id": "e57", "source": "n154", "target": "n151", "relation": "enables", "weight": 0.7}
+{"edge_id": "e58", "source": "n155", "target": "n148", "relation": "formalized_by", "weight": 0.8}
+{"edge_id": "e59", "source": "n156", "target": "n147", "relation": "constrained_by", "weight": 0.7}
+{"edge_id": "e60", "source": "n157", "target": "n158", "relation": "proposes", "weight": 1.0}
+{"edge_id": "e61", "source": "n157", "target": "n159", "relation": "proposes", "weight": 1.0}
+{"edge_id": "e62", "source": "n158", "target": "n159", "relation": "enables", "weight": 0.9}
+{"edge_id": "e63", "source": "n159", "target": "n160", "relation": "extended_by", "weight": 0.9}
+{"edge_id": "e64", "source": "n160", "target": "n161", "relation": "integrated_in", "weight": 0.8}
+{"edge_id": "e65", "source": "n161", "target": "n162", "relation": "enables", "weight": 0.8}
+{"edge_id": "e66", "source": "n157", "target": "n163", "relation": "motivated_by", "weight": 0.8}
+{"edge_id": "e67", "source": "n163", "target": "n164", "relation": "supports", "weight": 0.8}
+{"edge_id": "e68", "source": "n164", "target": "n165", "relation": "motivates", "weight": 0.8}
+{"edge_id": "e69", "source": "n165", "target": "n157", "relation": "addressed_by", "weight": 0.9}
+{"edge_id": "e70", "source": "n166", "target": "n160", "relation": "constrained_by", "weight": 0.7}
+{"edge_id": "e71", "source": "n167", "target": "n157", "relation": "future_of", "weight": 0.7}
+{"edge_id": "e72", "source": "n105", "target": "n125", "relation": "related_to", "weight": 0.5}
+{"edge_id": "e73", "source": "n108", "target": "n127", "relation": "similar_to", "weight": 0.6}
+{"edge_id": "e74", "source": "n109", "target": "n128", "relation": "similar_to", "weight": 0.5}
+{"edge_id": "e75", "source": "n129", "target": "n139", "relation": "similar_to", "weight": 0.7}
+{"edge_id": "e76", "source": "n125", "target": "n136", "relation": "related_to", "weight": 0.5}
+{"edge_id": "e77", "source": "n105", "target": "n147", "relation": "similar_approach", "weight": 0.7}
+{"edge_id": "e78", "source": "n111", "target": "n152", "relation": "similar_evaluation", "weight": 0.8}
+{"edge_id": "e79", "source": "n112", "target": "n151", "relation": "similar_application", "weight": 0.7}
+{"edge_id": "e80", "source": "n157", "target": "n164", "relation": "motivated_by", "weight": 0.8}
+{"edge_id": "e81", "source": "n118", "target": "n119", "relation": "related_to", "weight": 0.8}
+{"edge_id": "e82", "source": "n129", "target": "n133", "relation": "validates", "weight": 0.8}
+{"edge_id": "e83", "source": "n134", "target": "n131", "relation": "enables", "weight": 0.7}
+{"edge_id": "e84", "source": "n139", "target": "n143", "relation": "validates", "weight": 0.8}
+{"edge_id": "e85", "source": "n148", "target": "n150", "relation": "validates", "weight": 0.8}
+{"edge_id": "e86", "source": "n149", "target": "n150", "relation": "validates", "weight": 0.8}
+{"edge_id": "e87", "source": "n155", "target": "n149", "relation": "uses_method", "weight": 0.7}
+{"edge_id": "e88", "source": "n159", "target": "n158", "relation": "operates_on", "weight": 0.9}
+{"edge_id": "e89", "source": "n161", "target": "n159", "relation": "uses_method", "weight": 0.9}
+{"edge_id": "e90", "source": "n161", "target": "n160", "relation": "uses_method", "weight": 0.9}
+{"edge_id": "e91", "source": "n105", "target": "n111", "relation": "enables", "weight": 0.8}
+{"edge_id": "e92", "source": "n105", "target": "n112", "relation": "enables", "weight": 0.8}
+{"edge_id": "e93", "source": "n132", "target": "n125", "relation": "validates", "weight": 0.8}
+{"edge_id": "e175_185", "source": "n175", "target": "n185", "relation": "contrasts_with", "weight": 0.7, "description": "CoWVLA (wm_019) uses latent motion for robotic manipulation while X-WIN (wm_020) uses predictive sensing for medical imaging—both distill compact representations from richer modalities (video VAE vs CT volumes) into 2D observation models"}
+{"edge_id": "e177_197", "source": "n177", "target": "n197", "relation": "related_method", "weight": 0.8, "description": "Both CoWVLA (wm_019) and DriveWorld-VLA (wm_021) employ multi-stage progressive training paradigms: pre-training+co-fine-tuning vs joint training+action controllability+future-guided refinement"}
+{"edge_id": "e179_201", "source": "n179", "target": "n201", "relation": "related_formula", "weight": 0.7, "description": "Both CoWVLA and DriveWorld-VLA use multi-term loss functions combining action prediction with auxiliary supervision: CoWVLA adds latent motion+visual tokens, DriveWorld-VLA adds BEV segmentation+reward-weighted refinement"}
+{"edge_id": "e180_199", "source": "n180", "target": "n199", "relation": "parallel_finding", "weight": 0.6, "description": "Both CoWVLA and DriveWorld-VLA achieve SOTA results on their respective benchmarks (LIBERO/SimplerEnv vs NAVSIM/nuScenes), demonstrating that integrating world models with action prediction in latent space outperforms isolated approaches"}
+{"edge_id": "e183_195", "source": "n183", "target": "n195", "relation": "conceptual_link", "weight": 0.8, "description": "CoWVLA's paradigm unification of world-model VLA and latent-action VLA parallels DriveWorld-VLA's taxonomy of VLA-WM coupling strategies (disentangled, feature-sharing, unified). Both argue for tight representation-level integration over loose coupling"}
+{"edge_id": "e184_194", "source": "n184", "target": "n194", "relation": "shared_limitation", "weight": 0.6, "description": "Both CoWVLA (wm_019) and X-WIN (wm_020) face domain gap challenges: CoWVLA depends on pretrained video VAE quality with potential distribution mismatch, while X-WIN bridges sim-to-real gap between CT projections and real CXRs"}
+{"edge_id": "e186_196", "source": "n186", "target": "n196", "relation": "methodological_parallel", "weight": 0.7, "description": "Both X-WIN (wm_020) and DriveWorld-VLA (wm_021) use action-conditioned prediction in latent space: X-WIN predicts projections under 3D source rotations via JEPA-style dual-encoder, DriveWorld-VLA predicts future BEV states via flow-matching conditioned on actions"}
+{"edge_id": "e187_191", "source": "n187", "target": "n191", "relation": "design_insight", "weight": 0.6, "description": "X-WIN's finding that direct yaw rotation outperforms step-wise rotation (due to preserved degree of freedom) resonates with CoWVLA's finding that world-model methods benefit from richer temporal modeling—both show that constraining the prediction space too narrowly hurts performance"}
+{"edge_id": "e182_200", "source": "n182", "target": "n200", "relation": "shared_finding", "weight": 0.7, "description": "Both CoWVLA (wm_019) and DriveWorld-VLA (wm_021) find that progressive/staged training is critical: CoWVLA shows optimal N=2 keyframes balance constraint vs inference, DriveWorld-VLA shows non-progressive training drops 7.7 PDMS"}
+{"edge_id": "e193_203", "source": "n193", "target": "n203", "relation": "conceptual_evolution", "weight": 0.7, "description": "X-WIN extends CheXWorld from 2D to 3D (wm_020), just as DriveWorld-VLA advances beyond feature-sharing approaches to unified causal reasoning (wm_021)—both papers represent paradigm extensions that close capability gaps in their respective domains"}
+{"edge_id": "e205_206", "source": "n205", "target": "n206", "relation": "addresses", "content": "World-VLA-Loop addresses near-success hallucination failures in video world models (n206) by training on SANS dataset with near-success trajectories and joint reward prediction"}
+{"edge_id": "e205_215", "source": "n205", "target": "n215", "relation": "instantiates", "content": "World-VLA-Loop is an instantiation of the efficiency-focused video world model paradigms surveyed in wm_023, specifically using diffusion-based world models for RL post-training"}
+{"edge_id": "e207_206", "source": "n207", "target": "n206", "relation": "mitigates", "content": "SANS dataset (success + near-success trajectories) directly mitigates the hallucinated success problem by forcing the world model to learn sharper success-failure boundaries"}
+{"edge_id": "e208_207", "source": "n208", "target": "n207", "relation": "trained_on", "content": "State-aware video world model with reward prediction head is trained on the SANS dataset, jointly optimizing flow matching loss and reward MSE"}
+{"edge_id": "e210_211", "source": "n210", "target": "n211", "relation": "enables", "content": "Closed-loop co-evolution enables GRPO-based RL post-training by iteratively refining both world model and VLA policy through mutual feedback"}
+{"edge_id": "e205_227", "source": "n205", "target": "n227", "relation": "related_to", "content": "World-VLA-Loop's closed-loop paradigm relates to Cascaded WAM taxonomy - it separates world model (video simulator) from VLA policy, but adds iterative co-evolution unlike static cascaded approaches"}
+{"edge_id": "e212_214", "source": "n212", "target": "n214", "relation": "constrained_by", "content": "The 88.5% visual alignment and 87.25% reward alignment results are constrained by the limitation that LIBERO-100 long-horizon tasks suffer severe quality drift over 300+ frames"}
+{"edge_id": "e215_224", "source": "n215", "target": "n224", "relation": "motivates", "content": "The efficiency taxonomy (wm_023) directly motivates addressing computational bottlenecks - KV cache explosion, diffusion latency, and spatiotemporal complexity that hinder real-time world model deployment"}
+{"edge_id": "e218_219", "source": "n218", "target": "n219", "relation": "subsumes", "content": "Hybrid AR-diffusion modeling subsumes streaming causal diffusion variants (Self Forcing, Rolling Forcing) which causalize diffusion for incremental frame generation"}
+{"edge_id": "e221_224", "source": "n221", "target": "n224", "relation": "evidence_of", "content": "Long-horizon degradation findings (object permanence, structural consistency failures over 10-minute windows) provide concrete evidence for the efficiency bottlenecks limiting practical world models"}
+{"edge_id": "e223_205", "source": "n223", "target": "n205", "relation": "parallel_to", "content": "The 'generate-evaluate-retrain' convergence trend in wm_023 is conceptually parallel to World-VLA-Loop's closed-loop co-evolution - both establish iterative cycles between world modeling and policy learning"}
+{"edge_id": "e216_226", "source": "n216", "target": "n226", "relation": "formalized_in", "content": "The transition function P(s_{t+1}|s_t,a_t) concept from wm_023 is formally generalized in wm_024's WAM definition p(o',a|o,l) which unifies state prediction and action generation"}
+{"edge_id": "e226_227", "source": "n226", "target": "n227", "relation": "decomposed_into", "content": "WAM formal definition is decomposed into Cascaded WAM: p(o',a|o,l) = p(a|o',o,l)*p(o'|o,l), where world model and action decoder are separate modules"}
+{"edge_id": "e226_230", "source": "n226", "target": "n230", "relation": "decomposed_into", "content": "WAM formal definition is alternatively decomposed into Joint WAM where p(o',a|o,l) is modeled directly within a unified architecture without factorization"}
+{"edge_id": "e228_229", "source": "n228", "target": "n229", "relation": "contrasts_with", "content": "Explicit Cascaded WAM (pixel-space video + IDM) contrasts with Implicit Cascaded WAM (latent-space features + lightweight policy) on the efficiency-fidelity trade-off"}
+{"edge_id": "e232_205", "source": "n232", "target": "n205", "relation": "framework_for", "content": "WAM survey's four roles of world models for VLA (IL augmentation, model-based RL, reward modeling, policy evaluation) provide the conceptual framework that World-VLA-Loop's closed-loop system operationalizes"}
+{"edge_id": "e231_216", "source": "n231", "target": "n216", "relation": "extends", "content": "WAM concept disambiguation extends the world model definition - WAMs are backbone-agnostic and require active predictive commitment, going beyond passive video generation backbones"}
+{"edge_id": "e237_221", "source": "n237", "target": "n221", "relation": "addresses", "content": "Matrix-Game 3.0's camera-aware memory retrieval directly addresses the long-horizon structural consistency degradation that wm_023 identified as a critical unsolved challenge"}
+{"edge_id": "e236_219", "source": "n236", "target": "n219", "relation": "builds_on", "content": "Matrix-Game 3.0's error-aware training (SVI-style error buffer) builds on the streaming causal diffusion insights from wm_023 (Self Forcing, Diffusion Forcing) to reduce train-test mismatch"}
+{"edge_id": "e239_217", "source": "n239", "target": "n217", "relation": "instantiates", "content": "Matrix-Game 3.0's multi-segment DMD distillation instantiates the diffusion distillation taxonomy from wm_023 (adversarial/distribution-matching distillation), adapted for bidirectional streaming generation"}
+{"edge_id": "e240_224", "source": "n240", "target": "n224", "relation": "solves", "content": "Matrix-Game 3.0's real-time acceleration stack (INT8 quantization, VAE pruning, GPU retrieval) solves the efficiency bottlenecks that wm_023 identified as fundamental prerequisites for real-time deployment"}
+{"edge_id": "e242_244", "source": "n242", "target": "n244", "relation": "evidence_for", "content": "Ablation results showing GPU retrieval as most critical component (33.4 FPS drop without it) provide evidence for the fundamental trade-off between memory and real-time capability identified as an open challenge"}
+{"edge_id": "e235_230", "source": "n235", "target": "n230", "relation": "instance_of", "content": "Matrix-Game 3.0 is an instance of Joint WAM architecture - it unifies world state prediction and action-conditioned generation within a single bidirectional DiT backbone with memory"}
+{"edge_id": "e241_233", "source": "n241", "target": "n233", "relation": "exemplifies", "content": "Matrix-Game 3.0's industrial-scale data engine exemplifies the WAM data ecosystem from wm_024, combining synthetic (Unreal Engine), game-based (AAA titles), and real-world sources"}
+{"edge_id": "e215_234", "source": "n215", "target": "n234", "relation": "reviewed_in", "content": "Efficiency techniques for video world models (wm_023 survey) are systematically reviewed alongside the WAM evaluation taxonomy (wm_024 survey), together covering the full landscape from architecture to evaluation"}
+{"edge_id": "e205_232", "source": "n205", "target": "n232", "relation": "exemplifies", "content": "World-VLA-Loop exemplifies the WAM survey's taxonomy - it combines model-based RL (world model as surrogate environment) and reward modeling (reward prediction head) within a cascaded world-action framework"}
+{"edge_id": "e243_242", "source": "n243", "target": "n242", "relation": "informs", "content": "Viewpoint-specialized 28B scaling with noise-regime decoupling informs the ablation results, showing that decoupling action control and visual refinement across noise stages enables better generalization"}

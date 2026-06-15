@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>金星云层假说引擎 — 万物生 v0.3</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { 
+    font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: #e0e0e0; min-height: 100vh; padding: 20px;
+  }
+  .container { max-width: 1200px; margin: 0 auto; }
+  .header { text-align: center; padding: 40px 20px; }
+  .header h1 {
+    font-size: 2.5em; color: #e94560; margin-bottom: 10px;
+    text-shadow: 0 0 30px rgba(233,69,96,0.3);
+  }
+  .header .subtitle { color: #a0a0c0; font-size: 1.2em; }
+  .header .meta { color: #707090; font-size: 0.9em; margin-top: 10px; }
+  .stats { 
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
+    gap: 15px; margin: 30px 0;
+  }
+  .stat-card {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px; padding: 20px; text-align: center;
+    backdrop-filter: blur(10px);
+  }
+  .stat-card .num { font-size: 2.5em; color: #e94560; font-weight: bold; }
+  .stat-card .label { color: #a0a0c0; font-size: 0.9em; margin-top: 5px; }
+  .papers-section { margin: 30px 0; }
+  .papers-section h2 { color: #e94560; margin-bottom: 15px; font-size: 1.5em; }
+  .paper-item {
+    background: rgba(255,255,255,0.03); border-left: 3px solid #e94560;
+    padding: 15px; margin-bottom: 10px; border-radius: 0 8px 8px 0;
+  }
+  .paper-item .title { color: #fff; font-weight: 600; }
+  .paper-item .info { color: #8080a0; font-size: 0.85em; margin-top: 4px; }
+  .hypothesis-card {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px; padding: 25px; margin-bottom: 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .hypothesis-card:hover {
+    transform: translateY(-2px); box-shadow: 0 10px 30px rgba(233,69,96,0.15);
+    border-color: rgba(233,69,96,0.3);
+  }
+  .rank-badge {
+    display: inline-block; background: linear-gradient(135deg, #e94560, #c23152);
+    color: white; padding: 4px 12px; border-radius: 20px; font-weight: bold;
+    font-size: 0.85em; margin-right: 10px;
+  }
+  .type-tag {
+    display: inline-block; padding: 3px 10px; border-radius: 12px;
+    font-size: 0.8em; margin-right: 8px;
+  }
+  .type-method_gap { background: rgba(100,180,255,0.15); color: #64b4ff; border: 1px solid rgba(100,180,255,0.3); }
+  .type-cross_domain_bridge { background: rgba(100,255,180,0.15); color: #64ffb4; border: 1px solid rgba(100,255,180,0.3); }
+  .scores { display: flex; gap: 15px; margin-top: 10px; flex-wrap: wrap; }
+  .score {
+    padding: 3px 10px; border-radius: 8px; font-size: 0.85em;
+  }
+  .score-high { background: rgba(100,255,100,0.1); color: #64ff64; }
+  .score-medium { background: rgba(255,200,100,0.1); color: #ffc864; }
+  .score-low { background: rgba(255,100,100,0.1); color: #ff6464; }
+  .rq { font-size: 1.15em; color: #fff; margin: 10px 0; line-height: 1.5; }
+  .hyp-text { color: #c0c0d0; margin: 8px 0; font-style: italic; }
+  .exp-section { margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.05); }
+  .exp-title { color: #e94560; font-size: 0.9em; margin-bottom: 8px; }
+  .exp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .exp-item { font-size: 0.9em; color: #a0a0c0; }
+  .exp-item strong { color: #d0d0e0; }
+  .impact-text { color: #9090b0; font-size: 0.9em; margin-top: 10px; }
+  .footer { text-align: center; padding: 30px; color: #505070; font-size: 0.85em; }
+  @media (max-width: 768px) {
+    .exp-grid { grid-template-columns: 1fr; }
+    .header h1 { font-size: 1.8em; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>♀ 金星云层假说引擎</h1>
+    <div class="subtitle">万物生 v0.3 — 三层语义重构架构</div>
+    <div class="meta">2026-06-15 | 6篇论文 → 175知识节点 → 171原始假说 → 96独特研究问题 → Top-20</div>
+  </div>
+
+  <div class="stats">
+    <div class="stat-card">
+      <div class="num">6</div>
+      <div class="label">输入论文</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">175</div>
+      <div class="label">知识节点</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">171</div>
+      <div class="label">原始假说 (v0.2)</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">96</div>
+      <div class="label">独特研究问题 (v0.3)</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">20</div>
+      <div class="label">精选Top-20</div>
+    </div>
+  </div>
+
+  <div class="papers-section">
+    <h2>📄 输入论文库</h2>
+    <div class="paper-item">
+      <div class="title">Venus Cloud Research: Progress and Perspectives</div>
+      <div class="info">venus_001 | Space Sci Rev (2025) | 角色: shared_core</div>
+    </div>
+    <div class="paper-item">
+      <div class="title">A Panspermia Origin for Venus Cloud Life</div>
+      <div class="info">venus_002 | JGR Planets (2026) | 角色: shared_core</div>
+    </div>
+    <div class="paper-item">
+      <div class="title">On the possibility of carbon-free heteropolymers on Venus</div>
+      <div class="info">venus_003 | Astrobiology (2025) | 角色: routed_expert</div>
+    </div>
+    <div class="paper-item">
+      <div class="title">Editorial: Topical Collection on Venus</div>
+      <div class="info">venus_004 | Space Sci Rev (2018) | 角色: shared_core</div>
+    </div>
+    <div class="paper-item">
+      <div class="title">Stability of 20 Biogenic Amino Acids in Concentrated Sulfuric Acid</div>
+      <div class="info">venus_005 | Astrobiology (2024) | 角色: routed_expert</div>
+    </div>
+    <div class="paper-item">
+      <div class="title">Temporal variation in cloud-top temperature of Venus</div>
+      <div class="info">venus_007 | Earth Planets Space (2025) | 角色: routed_expert</div>
+    </div>
+  </div>
+
+  <div class="papers-section">
+    <h2>🏆 Top-20 可行动研究问题</h2>
+    <div class="hypothesis-card">
+      <div>
+        <span class="rank-badge">#1</span>
+        <span class="type-tag type-method_gap">方法迁移</span>
+        <span class="score score-high">新颖性: high</span>
+        <span class="score score-high">可行性: high</span>
+      </div>
+      <div class="rq">Can the binary H2SO4-H2O condensation framework and altitude-resolved acidity/temperature/water-activity profiles from venus_001's microphysical models (CARMA, Dai 2022a, MAD-VenLA) be used to define Venus-realistic test conditions for the venus_005 NMR amino-acid stability assay, replacing the fixed 98%/81% w/w endpoints with the actual continuum of cloud conditions?</div>
+      <div class="hyp-text"><strong>假说：</strong>When the NMR stability experiments are repeated across the model-derived range of H2SO4 concentrations, water activities and temperatures spanning the upper-to-lower cloud column, the backbone-survival ranking will become acidity- and temperature-dependent, and at least one currently 'stable' amino acid will cross into reactivity within the warmer lower-cloud (81% and weaker, higher-T) regime, narrowing the truly habitable layer.</div>
+      <div class="exp-section">
+        <div class="exp-title">🔬 建议实验</div>
+        <div class="exp-grid">
+          <div class="exp-item"><strong>方案：</strong>Use the venus_001 models to generate a grid of (H2SO4 w/w, water activity, temperature) cells representative of upper haze through lower cloud; prepare D2SO4/D2O NMR samples matching each cell and acquire 1D 1H/13C and 2D HMQC spectra over weeks, following the venus_005 protocol.</div>
+          <div class="exp-item"><strong>指标：</strong>Backbone (amino + carboxyl) integrity fraction per amino acid per condition cell, and the altitude/acidity threshold at which each amino acid transitions from stable to reactive.</div>
+          <div class="exp-item"><strong>基线：</strong>The original venus_005 two-point (98% and 81% w/w, room T) stability dataset.</div>
+          <div class="exp-item"><strong>瓶颈：</strong>Reproducing realistic intermediate acidities and especially the elevated lower-cloud temperatures in sealed NMR tubes without degrading spectral quality or losing volatile species; water activity in D2O is hard to hold constant during heating.</div>
+        </div>
+      </div>
+      <div class="impact-text">💡 <strong>影响力：</strong>It grounds the habitability claim in the actual modeled cloud environment rather than arbitrary lab concentrations, turning a binary stable/unstable result into an altitude-resolved survivability map directly comparable to mission sampling targets.</div>
+    </div>
+    <div class="hypothesis-card">
+      <div>
+        <span class="rank-badge">#2</span>
+        <span class="type-tag type-cross_domain_bridge">跨域桥梁</span>
+        <span class="score score-high">新颖性: high</span>
+        <span class="score score-high">可行性: high</span>
+      </div>
+      <div class="rq">Can the AutodE conformational-sampling + B3LYP-D3BJ/6-31+G(d,p)/SMD (high-dielectric) DFT pipeline with TD-DFT IR/UV-Vis prediction be used to pre-screen which of the 20 biogenic amino acids will retain an intact backbone versus degrade (like tryptophan) in 81-98 wt% D2SO4, and to assign the experimental NMR/IR signatures observed by the Venus habitability study?</div>
+      <div class="hyp-text"><strong>假说：</strong>DFT-SMD computed protonation free energies and reaction barriers (with dielectric retuned to concentrated sulfuric acid) will correctly rank tryptophan as the only one of the 20 amino acids with a thermodynamically/kinetically accessible backbone-degradation pathway, and predicted IR/13C shifts will match the Bruker 400 MHz 1H-13C HMQC spectra to within assignment tolerance, providing a falsifiable in-silico stability screen.</div>
+      <div class="exp-section">
+        <div class="exp-title">🔬 建议实验</div>
+        <div class="exp-grid">
+          <div class="exp-item"><strong>方案：</strong>Run AutodE conformer search then B3LYP-D3BJ/6-31+G(d,p) with SMD dielectric set to concentrated H2SO4 for all 20 protonated amino acids; compute degradation transition states (e.g., indole-ring electrophilic attack for Trp), TD-DFT/IR spectra, and predicted 13C chemical shifts via GIAO; compare predictions to the measured NMR stability dataset.</div>
+          <div class="exp-item"><strong>指标：</strong>Classification accuracy (stable vs degraded) across 20 amino acids and RMSD of predicted vs observed 13C/1H chemical shifts and IR bands.</div>
+          <div class="exp-item"><strong>基线：</strong>Experimental NMR result (19/20 stable, Trp fully reactive) and gas-phase or water-parameterized SMD DFT without dielectric retuning.</div>
+          <div class="exp-item"><strong>瓶颈：</strong>Implicit SMD with a single bulk dielectric poorly captures explicit protonation/sulfonation by concentrated H2SO4 and ion-pairing; a few explicit acid molecules or microsolvation shells may be needed to reproduce the Trp-specific reactivity.</div>
+        </div>
+      </div>
+      <div class="impact-text">💡 <strong>影响力：</strong>A validated DFT stability screen would let researchers triage organic molecules for Venus-cloud habitability without synthesizing and NMR-testing each one, extending the experimental 20-amino-acid result to peptides, nucleobases, and lipids.</div>
+    </div>
+    <div class="hypothesis-card">
+      <div>
+        <span class="rank-badge">#3</span>
+        <span class="type-tag type-method_gap">方法迁移</span>
+        <span class="score score-high">新颖性: high</span>
+        <span class="score score-high">可行性: high</span>
+      </div>
+      <div class="rq">Can venus_001's MAD-VenLA / Dai-2022a cloud models translate venus_005's bench-scale amino-acid stability (98% & 81% w/w D2SO4) into predicted survival across the real altitude-dependent acidity profile of Venus clouds?</div>
+      <div class="hyp-text"><strong>假说：</strong>Mapping venus_005's two discrete acidity datapoints onto venus_001's continuous altitude-vs-acidity profile will predict that 19/20 amino acids remain intact only above the cloud altitude where H2SO4 exceeds ~80% w/w, below which dilution/temperature pushes at least one additional amino acid toward degradation.</div>
+      <div class="exp-section">
+        <div class="exp-title">🔬 建议实验</div>
+        <div class="exp-grid">
+          <div class="exp-item"><strong>方案：</strong>Use venus_001's binary-condensation acidity(altitude) curve to assign an effective concentration to each cloud layer; interpolate venus_005's measured stability between 81% and 98% to produce an altitude-resolved survival map.</div>
+          <div class="exp-item"><strong>指标：</strong>Predicted fraction of stable amino acids vs. altitude.</div>
+          <div class="exp-item"><strong>基线：</strong>venus_005's two fixed-concentration lab measurements with no altitude context.</div>
+          <div class="exp-item"><strong>瓶颈：</strong>Only two acidity points limit interpolation; temperature dependence of stability not yet measured.</div>
+        </div>
+      </div>
+      <div class="impact-text">💡 <strong>影响力：</strong>Converts a lab stability result into a Venus-altitude habitability profile, directly relevant to where life-relevant molecules could persist.</div>
+    </div>
+    <div class="hypothesis-card">
+      <div>
+        <span class="rank-badge">#4</span>
+        <span class="type-tag type-method_gap">方法迁移</span>
+        <span class="score score-high">新颖性: high</span>
+        <span class="score score-high">可行性: high</span>
+      </div>
+      <div class="rq">Can venus_003's DFT/TD-DFT pipeline explain the molecular mechanism behind venus_005's observation that 19/20 amino acids are acid-stable but tryptophan is not?</div>
+      <div class="hyp-text"><strong>假说：</strong>venus_003's DFT reaction-barrier and bond-dissociation analysis will identify tryptophan's electron-rich indole ring as the uniquely low-barrier (<15 kcal/mol) site for acid-catalyzed attack, explaining why it alone degrades in venus_005's experiment.</div>
+      <div class="exp-section">
+        <div class="exp-title">🔬 建议实验</div>
+        <div class="exp-grid">
+          <div class="exp-item"><strong>方案：</strong>Compute protonation sites, reaction barriers, and bond-dissociation energies for each venus_005 amino acid using venus_003's DFT protocol; correlate with observed reactivity.</div>
+          <div class="exp-item"><strong>指标：</strong>Predicted lowest acid-attack barrier per amino acid vs. observed stable/reactive label.</div>
+          <div class="exp-item"><strong>基线：</strong>venus_005's empirical result with no mechanistic explanation.</div>
+          <div class="exp-item"><strong>瓶颈：</strong>Capturing the explicit sulfuric-acid attack pathway within an implicit-solvent DFT framework.</div>
+        </div>
+      </div>
+      <div class="impact-text">💡 <strong>影响力：</strong>Supplies the missing mechanism for a striking experimental result, enabling prediction of which untested organics will survive Venus acid.</div>
+    </div>
+    <div class="hypothesis-card">
+      <div>
+        <span class="rank-badge">#5</span>
+        <span class="type-tag type-method_gap">方法迁移</span>
+        <span class="score score-high">新颖性: high</span>
+        <span class="score score-high">可行性: high</span>
+      </div>
+      <div class="rq">Can venus_005's measured amino-acid backbone stability calibrate the accuracy of venus_003's DFT/SMD solvation model in concentrated sulfuric acid?</div>
+      <div class="hyp-text"><strong>假说：</strong>Recomputing venus_005's 20 amino acids with venus_003's B3LYP/SMD(dielectric=100) protocol will reproduce the observed stable-vs-reactive split (19 stable, Trp reactive) only if the SMD dielectric is tuned to the 81-98% acid regime, exposing a needed solvation correction.</div>
+      <div class="exp-section">
+        <div class="exp-title">🔬 建议实验</div>
+        <div class="exp-grid">
+          <div class="exp-item"><strong>方案：</strong>Apply venus_003's DFT+SMD workflow to venus_005's amino-acid set; compare predicted degradation propensity to the NMR-measured outcomes.</div>
+          <div class="exp-item"><strong>指标：</strong>Classification accuracy (stable/reactive) of DFT vs. venus_005 NMR ground truth.</div>
+          <div class="exp-item"><strong>基线：</strong>venus_003's default SMD water parametrization (dielectric=100).</div>
+          <div class="exp-item"><strong>瓶颈：</strong>Implicit solvation poorly captures specific protonation/sulfonation chemistry behind tryptophan's reactivity.</div>
+        </div>
+      </div>
+      <div class="impact-text">💡 <strong>影响力：</strong>Uses a clean 20-compound benchmark to validate (or correct) the solvation method underpinning all of venus_003's Venus stability claims.</div>
+    </div>
+    <div class="hypothesis-card">
+      <div>
+        <span class="rank-badge">#6</span>
+        <span class="type-tag type-method_gap">方法迁移</span>
+        <span class="score score-high">新颖性: high</span>
+        <span class="score score-high">可行性: high</span>
+      </div>
+      <div class="rq">Can venus_005's experimental finding that 19/20 amino acid backbones survive concentrated H2SO4 serve as a calibration benchmark to validate venus_003's DFT/SMD solvation model?</div>
+      <div class="hyp-text"><strong>假说：</strong>Running venus_003's exact B3LYP-D3BJ/SMD protocol on the 20 amino acids will reproduce the experimental 19-stable/Trp-reactive split; failure to do so quantifies the solvation model's error and recalibrates it before it is applied to heteropolymers.</div>
+      <div class="exp-section">
+        <div class="exp-title">🔬 建议实验</div>
+        <div class="exp-grid">
+          <div class="exp-item"><strong>方案：</strong>Use venus_005's dataset as ground truth; compute degradation free energies for all 20 amino acids with venus_003's method; tune SMD parameters to match the experimental split.</div>
+          <div class="exp-item"><strong>指标：</strong>Classification accuracy on the 20-amino-acid benchmark before and after recalibration.</div>
+          <div class="exp-item"><strong>基线：</strong>venus_005's measured stability outcomes.</div>
+          <div class="exp-item"><strong>瓶颈：</strong>Overfitting the solvation model to amino acids may not generalize to the chemically distinct S/P heteropolymers of interest.</div>
+        </div>
+      </div>
+      <div class="impact-text">💡 <strong>影响力：</strong>Gives venus_003 an experimental anchor it currently lacks, converting its predictions from unvalidated to benchmarked.</div>
+    </div>
+    <div class="hypothesis-card">
+      <div>
+        <span class="rank-badge">#7</span>
+        <span class="type-tag type-method_gap">方法迁移</span>
+        <span class="score score-high">新颖性: high</span>
+        <span class="score score-medium">可行性: medium</span>
+      </div>
+      <div class="rq">Can the Dai et al. (2022a) semi-analytical H2SO4 cloud model be coupled to the venus_003 DFT thermochemistry pipeline to predict the steady-state abundance and altitude profile of candidate sulfur/phosphorus heteropolymers in real Venus cloud droplets?</div>
+      <div class="hyp-text"><strong>假说：</strong>Embedding venus_003's DFT-derived formation/hydrolysis free energies into the Dai 2022a supersaturation-and-acidity iteration will yield an altitude-resolved heteropolymer concentration profile whose peak coincides (within 2 km) with the 48-58 km cloud-mass-loading maximum, rather than the uniform abundance currently assumed by the standalone quantum-chemical study.</div>
+      <div class="exp-section">
+        <div class="exp-title">🔬 建议实验</div>
+        <div class="exp-grid">
+          <div class="exp-item"><strong>方案：</strong>Couple venus_003's Gibbs free energies (P-O-S linkage formation, hydrolysis barriers) as composition-dependent source/sink terms inside the Dai 2022a iteration that already solves for H2SO4 mass loading and acidity vs. altitude; run on the standard Venus T/p and Kzz profile.</div>
+          <div class="exp-item"><strong>指标：</strong>Predicted vertical profile of heteropolymer mass fraction and droplet acidity; altitude of peak concentration.</div>
+          <div class="exp-item"><strong>基线：</strong>venus_003's altitude-independent thermodynamic feasibility estimate that assumes a single bulk acidity.</div>
+          <div class="exp-item"><strong>瓶颈：</strong>Mapping discrete molecular DFT free energies (standard-state, implicit-solvent) onto the bulk activity-corrected supersaturation framework of the cloud model without double-counting solvation.</div>
+        </div>
+      </div>
+      <div class="impact-text">💡 <strong>影响力：</strong>Turns a static 'is this molecule stable?' result into a testable, altitude-resolved prediction of where on Venus an agnostic biosignature polymer could accumulate, directly informing in-situ probe sampling altitudes.</div>
+    </div>
+    <div class="hypothesis-card">
+      <div>
+        <span class="rank-badge">#8</span>
+        <span class="type-tag type-method_gap">方法迁移</span>
+        <span class="score score-high">新颖性: high</span>
+        <span class="score score-medium">可行性: medium</span>
+      </div>
+      <div class="rq">Can the empirical 1H/13C NMR backbone-stability ranking of the 20 biogenic amino acids in 81-98% w/w H2SO4 (venus_005) be encoded as a composition-dependent organic-solute survival term inside venus_001's cloud microphysical/semi-analytical models (CARMA, Dai 2022a, MAD-VenLA) so that the models predict where in the cloud column dissolved organics persist?</div>
+      <div class="hyp-text"><strong>假说：</strong>Adding an acidity- and altitude-resolved organic-solute lifetime parameterization, calibrated to the measured NMR backbone-survival data (19/20 stable, tryptophan reactive), to the H2SO4-H2O binary condensation models will shift predicted organic survival to the 81% w/w (lower, warmer) cloud layers and produce a falsifiable vertical organic-persistence profile that the unmodified, abiotic-only models cannot generate.</div>
+      <div class="exp-section">
+        <div class="exp-title">🔬 建议实验</div>
+        <div class="exp-grid">
+          <div class="exp-item"><strong>方案：</strong>Couple the venus_005 NMR-derived survival table (per amino acid, at 98% and 81% w/w D2SO4, room-T and 80C) to the Dai et al. (2022a) semi-analytical model's acidity/mass-loading iteration as a tracer species; rerun with CARMA-style vertical acidity and temperature profiles to map solute lifetime vs altitude.</div>
+          <div class="exp-item"><strong>指标：</strong>Predicted fractional backbone survival of each tracer organic as a function of cloud altitude / local H2SO4 w/w, compared to the NMR-measured stability ranking (Spearman rank correlation, and absolute survival-fraction error).</div>
+          <div class="exp-item"><strong>基线：</strong>The unmodified abiotic cloud models (CARMA, Dai 2022a, MAD-VenLA) run without any organic-solute term, which predict no organic persistence information.</div>
+          <div class="exp-item"><strong>瓶颈：</strong>NMR data are at fixed lab concentrations (98%/81%) and timescales (up to 4 weeks) and lack kinetic rate constants; mapping discrete stability observations onto the continuous, time-evolving acidity/temperature field of the cloud column requires assuming a kinetics model not directly measured.</div>
+        </div>
+      </div>
+      <div class="impact-text">💡 <strong>影响力：</strong>It converts a static bench-chemistry stability result into a spatial habitability prediction, telling future missions which cloud layer to sample for surviving organics and giving the cloud-model community its first organic-survival observable.</div>
+    </div>
+    <div class="hypothesis-card">
+      <div>
+        <span class="rank-badge">#9</span>
+        <span class="type-tag type-method_gap">方法迁移</span>
+        <span class="score score-high">新颖性: high</span>
+        <span class="score score-medium">可行性: medium</span>
+      </div>
+      <div class="rq">Can the altitude-resolved Venus cloud conditions (H2SO4-H2O acidity, temperature, SO3/SO2 abundances, water activity) supplied by venus_001's microphysical and atmospheric framework be used to constrain the implicit-solvent (SMD, dielectric ~100) and thermodynamic conditions of the venus_003 DFT/TD-DFT carbon-free heteropolymer calculations?</div>
+      <div class="hyp-text"><strong>假说：</strong>Replacing the single fixed dielectric/temperature assumption in the venus_003 DFT-SMD calculations with the venus_001 model's altitude-dependent dielectric and temperature profile will change the predicted relative free energies and the stable phase (monomer vs γ-SO3 vs chain polymer), revealing a specific cloud-altitude window where SO3-based heteropolymer formation is thermodynamically favored.</div>
+      <div class="exp-section">
+        <div class="exp-title">🔬 建议实验</div>
+        <div class="exp-grid">
+          <div class="exp-item"><strong>方案：</strong>Parameterize a series of SMD solvent environments (dielectric constant, temperature) from the venus_001 vertical cloud profiles, then rerun the B3LYP-D3BJ/6-31+G(d,p) + TD-DFT polymerization free-energy and spectra calculations across that altitude grid.</div>
+          <div class="exp-item"><strong>指标：</strong>Predicted Gibbs free energy of SO3 polymerization (and IR/UV-Vis signatures) as a function of cloud altitude/dielectric, and identification of the altitude band where dG < 0.</div>
+          <div class="exp-item"><strong>基线：</strong>The original venus_003 calculations using a single water-parametrized SMD model with dielectric fixed at ~100 and one temperature.</div>
+          <div class="exp-item"><strong>瓶颈：</strong>SMD is parametrized for water near room temperature; extrapolating an effective dielectric and cavitation parameters to concentrated-H2SO4, variable-T Venus conditions is physically shaky and may dominate the computed energetics.</div>
+        </div>
+      </div>
+      <div class="impact-text">💡 <strong>影响力：</strong>It links abstract quantum-chemistry predictions of exotic Venus biochemistry to a concrete, observation-anchored atmospheric column, identifying where carbon-free polymers could actually form and what spectral signature to look for.</div>
+    </div>
+    <div class="hypothesis-card">
+      <div>
+        <span class="rank-badge">#10</span>
+        <span class="type-tag type-method_gap">方法迁移</span>
+        <span class="score score-high">新颖性: high</span>
+        <span class="score score-medium">可行性: medium</span>
+      </div>
+      <div class="rq">Can the DFT/TD-DFT machinery from venus_003 (B3LYP-D3BJ/6-31+G(d,p), SMD, AutodE conformational sampling, TD-DFT IR/UV-Vis spectra) supply the molecular-level thermodynamic and optical inputs (e.g. SO3-polymer phase free energies and UV-Vis cross-sections) that venus_001's microphysical models (CARMA, Dai 2022a, MAD-VenLA) currently lack for non-H2SO4 cloud components and the UV absorber?</div>
+      <div class="hyp-text"><strong>假说：</strong>Feeding venus_003-computed SO3-allotrope phase stabilities and TD-DFT UV-Vis cross-sections into the venus_001 cloud models as a new condensable/absorbing species will let the coupled model reproduce the observed 320-400 nm UV-absorber contrast and predict a non-sulfuric mass-loading fraction, which the pure binary-condensation models cannot.</div>
+      <div class="exp-section">
+        <div class="exp-title">🔬 建议实验</div>
+        <div class="exp-grid">
+          <div class="exp-item"><strong>方案：</strong>Generate SO3-monomer/γ-SO3/chain-polymer formation free energies and TD-DFT UV-Vis spectra with the venus_003 protocol, then inject them as an additional condensing, UV-absorbing species into the Dai (2022a) semi-analytical model and CARMA microphysics.</div>
+          <div class="exp-item"><strong>指标：</strong>Modeled cloud-top UV contrast / albedo in 320-400 nm and the predicted SO3-polymer mass fraction vs altitude, compared to observed UV-absorber features.</div>
+          <div class="exp-item"><strong>基线：</strong>venus_001 models run with only the H2SO4-H2O binary system and no quantum-derived non-sulfuric absorber.</div>
+          <div class="exp-item"><strong>瓶颈：</strong>B3LYP/SMD excitation energies and condensed-phase free energies carry tens-of-kJ/mol and tenths-of-eV errors; propagating these uncertainties into microphysical mass loading and band positions may make the UV-contrast prediction non-unique.</div>
+        </div>
+      </div>
+      <div class="impact-text">💡 <strong>影响力：</strong>It gives the cloud-modeling community a first-principles way to introduce candidate non-sulfuric/UV-absorbing species, directly addressing the long-standing unidentified-UV-absorber problem with physically grounded optical and thermodynamic data.</div>
+    </div>
+    <div class="hypothesis-card">
+      <div>
+        <span class="rank-badge">#11</span>
+        <span class="type-tag type-method_gap">方法迁移</span>
+        <span class="score score-high">新颖性: high</span>
+        <span class="score score-medium">可行性: medium</span>
+      </div>
+      <div class="rq">Can the venus_003 DFT/TD-DFT pipeline (B3LYP-D3BJ/6-31+G(d,p), SMD high-dielectric solvent, AutodE conformer search, TD-DFT-derived spectra) predict the reaction pathways, NMR-relevant chemical shifts, and relative stabilities of the 20 biogenic amino acids in concentrated H2SO4, complementing and explaining the experimental NMR survival ranking in venus_005?</div>
+      <div class="hyp-text"><strong>假说：</strong>DFT-computed activation free energies for backbone (deamidation/decarboxylation) and side-chain (sulfonation, dehydration) reactions in an SMD-modeled concentrated-H2SO4 solvent will correctly rank tryptophan as uniquely reactive and reproduce the observed side-chain modifications, with predicted 1H/13C shifts matching the measured spectra within a few ppm.</div>
+      <div class="exp-section">
+        <div class="exp-title">🔬 建议实验</div>
+        <div class="exp-grid">
+          <div class="exp-item"><strong>方案：</strong>Build protonated amino-acid models in SMD (dielectric tuned to concentrated H2SO4), run AutodE conformational sampling and B3LYP-D3BJ transition-state searches for candidate degradation/sulfonation pathways, and compute GIAO/TD-DFT NMR shifts and IR signatures.</div>
+          <div class="exp-item"><strong>指标：</strong>Rank correlation between DFT-predicted backbone-reaction barriers and the experimental stability ranking, plus mean absolute error between computed and measured 1H/13C chemical shifts.</div>
+          <div class="exp-item"><strong>基线：</strong>The venus_005 experimental NMR stability ranking and observed modification products, with no computational mechanism.</div>
+          <div class="exp-item"><strong>瓶颈：</strong>Modeling concentrated H2SO4 (explicit protonation, autoprotolysis, very high effective dielectric) with an implicit SMD model parametrized for water is the core difficulty; transition states for sulfonation in superacid may need explicit solvent and higher-level methods.</div>
+        </div>
+      </div>
+      <div class="impact-text">💡 <strong>影响力：</strong>It would supply the mechanistic 'why' behind the experimental stability ranking, predict products and shifts before bench work, and let researchers screen non-canonical or undetected amino acids computationally rather than buying and measuring each one.</div>
+    </div>
+    <div class="hypothesis-card">
+      <div>
+        <span class="rank-badge">#12</span>
+        <span class="type-tag type-method_gap">方法迁移</span>
+        <span class="score score-high">新颖性: high</span>
+        <span class="score score-medium">可行性: medium</span>
+      </div>
+      <div class="rq">Can the venus_005 experimental workflow (Bruker 400 MHz 1H/13C/HMQC NMR of compounds dissolved in 81-98% w/w D2SO4/D2O, multi-week stability monitoring) be used to experimentally validate the venus_003 DFT/TD-DFT predictions about SO3-based carbon-free heteropolymer structures and stabilities under Venus cloud conditions?</div>
+      <div class="hyp-text"><strong>假说：</strong>NMR (and complementary IR) spectra of SO3/sulfur-species mixtures in concentrated D2SO4/D2O will confirm or refute the venus_003-predicted condensed-phase SO3 structures (monomer, γ-SO3 trimer, α/β chain polymers) and their relative persistence, with at least one predicted polymeric species being experimentally undetectable, falsifying part of the computational stability ranking.</div>
+      <div class="exp-section">
+        <div class="exp-title">🔬 建议实验</div>
+        <div class="exp-grid">
+          <div class="exp-item"><strong>方案：</strong>Adapt the venus_005 sample-prep and NMR protocol to sulfur-oxide systems: prepare SO3-bearing samples in 81% and 98% w/w D2SO4/D2O, acquire 1D 1H/13C and 2D HMQC plus IR over weeks, and compare against the venus_003 DFT/TD-DFT-computed IR/UV-Vis and shift signatures.</div>
+          <div class="exp-item"><strong>指标：</strong>Match between observed spectroscopic signatures and DFT-predicted IR/NMR features for each SO3 phase, and measured persistence (signal lifetime) vs predicted relative stability.</div>
+          <div class="exp-item"><strong>基线：</strong>The venus_003 DFT/TD-DFT predictions standing alone, with no experimental spectroscopic confirmation.</div>
+          <div class="exp-item"><strong>瓶颈：</strong>SO3 in concentrated sulfuric acid is extremely reactive/hygroscopic and largely NMR-silent for the relevant nuclei; capturing transient polymeric phases spectroscopically without hydrolysis or handling artifacts is the main obstacle.</div>
+        </div>
+      </div>
+      <div class="impact-text">💡 <strong>影响力：</strong>It closes the loop between computational astrobiology prediction and laboratory reality, providing the first experimental test of whether carbon-free SO3 heteropolymers proposed for Venus clouds actually persist, which is essential before such polymers inform habitability claims.</div>
+    </div>
+    <div class="hypothesis-card">
+      <div>
+        <span class="rank-badge">#13</span>
+        <span class="type-tag type-method_gap">方法迁移</span>
+        <span class="score score-high">新颖性: high</span>
+        <span class="score score-medium">可行性: medium</span>
+      </div>
+      <div class="rq">Can the B3LYP-D3BJ/6-31+G(d,p) + SMD(ε=100) DFT protocol from venus_003 predict, a priori, which of the 20 biogenic amino acids will be backbone-stable versus reactive in concentrated H2SO4, reproducing the 19-stable / tryptophan-reactive split observed by NMR?</div>
+      <div class="hyp-text"><strong>假说：</strong>Computed Gibbs free energies of the lowest-barrier degradation pathway (e.g. side-chain electrophilic attack, decarboxylation) for each protonated amino acid in the SMD high-dielectric sulfuric-acid model will rank tryptophan as the single most exergonic / lowest-barrier case, separating it from the other 19 by >20 kJ/mol, thereby predicting the experimental reactivity split without prior knowledge of it.</div>
+      <div class="exp-section">
+        <div class="exp-title">🔬 建议实验</div>
+        <div class="exp-grid">
+          <div class="exp-item"><strong>方案：</strong>Build protonated and neutral structures of all 20 amino acids; run AutodE conformational sampling then B3LYP-D3BJ/6-31+G(d,p) geometry optimization with SMD parametrized for 98% H2SO4 (dielectric tuned as in venus_003); compute ΔG and activation barriers for candidate degradation channels.</div>
+          <div class="exp-item"><strong>指标：</strong>Per-amino-acid ΔG_rxn and ΔG‡ for the dominant degradation pathway; binary stable/reactive classification accuracy against the NMR ground truth.</div>
+          <div class="exp-item"><strong>基线：</strong>The experimental NMR stability ranking from venus_005 (19 stable, tryptophan reactive).</div>
+          <div class="exp-item"><strong>瓶颈：</strong>SMD was parametrized for water; re-deriving an implicit-solvent model that faithfully captures protonation equilibria and ion pairing in 98 wt% H2SO4 is the central adaptation difficulty.</div>
+        </div>
+      </div>
+      <div class="impact-text">💡 <strong>影响力：</strong>A validated predictive screen would let the field forecast which biomolecules survive Venus cloud acidity without running an NMR experiment for each, turning a slow empirical survey into a fast computational triage.</div>
+    </div>
+    <div class="hypothesis-card">
+      <div>
+        <span class="rank-badge">#14</span>
+        <span class="type-tag type-cross_domain_bridge">跨域桥梁</span>
+        <span class="score score-high">新颖性: high</span>
+        <span class="score score-medium">可行性: medium</span>
+      </div>
+      <div class="rq">Can the SMD implicit-solvation DFT protocol (B3LYP/D3BJ/6-31+G(d,p), Gaussian 16) with a dielectric constant retuned for concentrated H2SO4 be used to compute thermodynamically consistent acid-activity and effective-Henry's-law parameters for SO3 oligomerization that then feed the acidity-iteration loop of CARMA/Dai-2022a/MAD-VenLA cloud microphysics models?</div>
+      <div class="hyp-text"><strong>假说：</strong>Replacing the empirical H2SO4-H2O activity/solute-effect parameterization in the Dai et al. (2022a) acidity-iteration and CARMA solute (Raoult) term with DFT-SMD-derived activity coefficients and SO3 monomer/gamma-trimer/alpha-beta-polymer equilibrium free energies will shift the predicted equilibrium droplet acidity at 50-60 km by more than 2 wt% H2SO4 relative to the current binary-only treatment, a difference that is detectable and falsifiable against measured cloud acidity profiles.</div>
+      <div class="exp-section">
+        <div class="exp-title">🔬 建议实验</div>
+        <div class="exp-grid">
+          <div class="exp-item"><strong>方案：</strong>Run B3LYP-D3BJ/6-31+G(d,p) SMD calculations (dielectric tuned to concentrated sulfuric acid, ~100+) for H2SO4, H2O, SO3 monomer and gamma-/alpha-/beta-SO3 clusters to obtain solvation free energies and water/acid activities; ingest these as a thermodynamic table replacing the analytic solute term in the Dai 2022a supersaturation expression and the CARMA Kelvin+solute condensation kernel.</div>
+          <div class="exp-item"><strong>指标：</strong>Equilibrium droplet H2SO4 mass fraction (wt%) and cloud mass loading vs altitude (48-70 km), and condensation rate of H2SO4.</div>
+          <div class="exp-item"><strong>基线：</strong>Stock CARMA / Dai et al. 2022a / MAD-VenLA runs using their native binary H2SO4-H2O activity parameterizations.</div>
+          <div class="exp-item"><strong>瓶颈：</strong>Bridging single-molecule/small-cluster gas-phase-anchored DFT free energies to the bulk colligative activities the microphysics models require, including SO3 hydration to H2SO4, without double-counting solvation.</div>
+        </div>
+      </div>
+      <div class="impact-text">💡 <strong>影响力：</strong>Cloud acidity controls droplet stability, particle-size modes, and habitability assessments; grounding the microphysical activity terms in first-principles chemistry rather than empirical fits would make Venus cloud models predictive for sulfur speciation that current binary models ignore.</div>
+    </div>
+    <div class="hypothesis-card">
+      <div>
+        <span class="rank-badge">#15</span>
+        <span class="type-tag type-cross_domain_bridge">跨域桥梁</span>
+        <span class="score score-high">新颖性: high</span>
+        <span class="score score-medium">可行性: medium</span>
+      </div>
+      <div class="rq">Can the SO3 condensed-phase speciation knowledge from Domain A (monomer/gamma-trimer/alpha-beta polymer equilibria below 350 K) be combined with the Domain B concentrated-D2SO4 NMR stability protocol to test whether free SO3 (a stronger sulfonating agent than H2SO4) is the actual reactive species that degrades tryptophan and threatens other organics in Venus cloud droplets?</div>
+      <div class="hyp-text"><strong>假说：</strong>Amino-acid backbone stability in concentrated sulfuric acid is governed not by H2SO4 concentration alone but by free-SO3 activity (oleum character); adding controlled SO3 to the 98 wt% D2SO4/D2O NMR system will cause additional amino acids beyond tryptophan to degrade, and DFT-SMD predicts SO3-mediated sulfonation barriers lower than H2SO4-mediated ones for the newly reactive residues.</div>
+      <div class="exp-section">
+        <div class="exp-title">🔬 建议实验</div>
+        <div class="exp-grid">
+          <div class="exp-item"><strong>方案：</strong>Extend the Bruker 400 MHz 1D/2D 1H-13C HMQC NMR amino-acid stability assay to oleum (SO3-spiked D2SO4) at several SO3 mole fractions and at Venus-relevant temperatures, while using DFT (B3LYP-D3BJ/SMD high-dielectric) to compute SO3- vs H2SO4-mediated electrophilic-attack barriers for aromatic and electron-rich residues.</div>
+          <div class="exp-item"><strong>指标：</strong>Number and identity of amino acids showing NMR-detected degradation vs SO3 activity, correlated with DFT-predicted reaction barriers.</div>
+          <div class="exp-item"><strong>基线：</strong>Pure 81-98 wt% D2SO4 result (only tryptophan degrades).</div>
+          <div class="exp-item"><strong>瓶颈：</strong>Controlling and quantifying dissolved SO3 activity in sealed NMR tubes and disentangling SO3 oligomer speciation (gamma/alpha/beta) from monomeric reactive SO3 under measurement conditions.</div>
+        </div>
+      </div>
+      <div class="impact-text">💡 <strong>影响力：</strong>If free SO3 rather than bulk acidity sets organic survivability, habitability assessments of Venus clouds must track local SO3 speciation, fundamentally changing which molecules can persist and where in the cloud deck.</div>
+    </div>
+    <div class="hypothesis-card">
+      <div>
+        <span class="rank-badge">#16</span>
+        <span class="type-tag type-cross_domain_bridge">跨域桥梁</span>
+        <span class="score score-high">新颖性: high</span>
+        <span class="score score-medium">可行性: medium</span>
+      </div>
+      <div class="rq">Can the fast semi-analytical Dai et al. (2022a) cloud model (~15 s runtime, photochemical H2SO4 production -> supersaturation -> mass loading/acidity) be coupled with the Domain B DFT-predicted IR/UV-Vis spectra of SO3 phases and sulfur species to generate forward-modeled descent profiles testable against DAVINCI mission in-situ measurements?</div>
+      <div class="hyp-text"><strong>假说：</strong>A coupled pipeline that feeds DFT-computed TD-DFT UV-Vis and IR absorption signatures of SO3 monomer/gamma-trimer/alpha-beta polymers into the Dai 2022a acidity/mass-loading vs altitude output will predict a specific altitude-resolved spectral and acidity profile that DAVINCI's descent instruments (e.g., VTLS/VMS/VASI) can confirm or refute, distinguishing sulfur-polymer-bearing layers from pure H2SO4-H2O droplets.</div>
+      <div class="exp-section">
+        <div class="exp-title">🔬 建议实验</div>
+        <div class="exp-grid">
+          <div class="exp-item"><strong>方案：</strong>Run the Dai 2022a semi-analytical model to produce acidity, mass loading, and droplet size vs altitude; overlay DFT (B3LYP-D3BJ/SMD) + TD-DFT predicted IR/UV-Vis cross-sections of candidate sulfur species to synthesize expected DAVINCI descent-probe spectral/compositional profiles.</div>
+          <div class="exp-item"><strong>指标：</strong>Predicted altitude-resolved acidity, particle size mode, and spectral absorption features vs DAVINCI in-situ measurements.</div>
+          <div class="exp-item"><strong>基线：</strong>Pure binary H2SO4-H2O cloud forward model with no DFT-derived sulfur-polymer spectral signatures.</div>
+          <div class="exp-item"><strong>瓶颈：</strong>DAVINCI data are not yet available and the Dai model's LTE/constant-acidity simplifications plus DFT spectral accuracy for condensed polymers limit the precision of the forward-modeled signatures.</div>
+        </div>
+      </div>
+      <div class="impact-text">💡 <strong>影响力：</strong>Provides concrete, falsifiable predictions for an upcoming flagship Venus mission, turning a fast cloud model plus first-principles spectroscopy into an observational test of cloud sulfur chemistry and acidity.</div>
+    </div>
+    <div class="hypothesis-card">
+      <div>
+        <span class="rank-badge">#17</span>
+        <span class="type-tag type-cross_domain_bridge">跨域桥梁</span>
+        <span class="score score-high">新颖性: high</span>
+        <span class="score score-medium">可行性: medium</span>
+      </div>
+      <div class="rq">Can the molecular-level condensed-phase SO3 speciation (monomer, cyclic gamma-SO3 trimer, alpha/beta-SO3 chain polymers) and its B3LYP-D3BJ/SMD thermochemistry from the DFT domain be ingested as a temperature-dependent species-partitioning module into the H2SO4-H2O binary microphysics of CARMA, Dai et al. (2022a), and MAD-VenLA so that SO3 polymerization competes with H2SO4 condensation in setting cloud mass loading?</div>
+      <div class="hyp-text"><strong>假说：</strong>If DFT-derived Gibbs free energies and melting points (<350 K) for gamma-, alpha-, and beta-SO3 phases are added as a parallel condensation/polymerization channel in the Dai et al. semi-analytical supersaturation iteration, then a non-negligible fraction (>5% by mass) of available sulfur in the lower/middle cloud will be sequestered as condensed SO3 polymers rather than H2SO4, lowering modeled H2SO4 cloud mass loading measurably relative to the current binary-only models; if SO3 sequestration is negligible (<1%) the binary assumption is validated.</div>
+      <div class="exp-section">
+        <div class="exp-title">🔬 建议实验</div>
+        <div class="exp-grid">
+          <div class="exp-item"><strong>方案：</strong>Compute Gibbs free energies of formation and SO3<->H2SO4 conversion barriers for SO3 monomer/gamma-trimer/alpha-/beta-polymer using the existing B3LYP-D3BJ/6-31+G(d,p)/SMD (dielectric=100) protocol across 280-350 K; tabulate as a temperature-dependent partition function and bolt it onto the Dai et al. (2022a) 15-second supersaturation-iteration loop (and cross-check in CARMA's 1D column) as an added sulfur sink that competes with photochemical H2SO4 production for the SO3/SO2 feedstock.</div>
+          <div class="exp-item"><strong>指标：</strong>Fractional mass of total atmospheric sulfur partitioned into condensed SO3 phases vs H2SO4-H2O droplets as a function of altitude, and the resulting change in cloud mass loading (mg m^-3) and mode particle radius.</div>
+          <div class="exp-item"><strong>基线：</strong>Current binary H2SO4-H2O CARMA/Dai/MAD-VenLA runs with constant H2SO4 mass and no condensed SO3 channel.</div>
+          <div class="exp-item"><strong>瓶颈：</strong>SMD with a fixed dielectric of 100 is parametrized for bulk concentrated acid, not for the activity of monomeric SO3 at a partially dehydrated droplet surface, so converting DFT free energies into the activity/supersaturation variables the microphysics models use requires a non-trivial activity-coefficient bridge.</div>
+        </div>
+      </div>
+      <div class="impact-text">💡 <strong>影响力：</strong>Venus cloud models universally treat the condensate as binary H2SO4-H2O; if DFT-grounded SO3 polymer sequestration removes sulfur from that pool it would revise sulfur budgets, mass loading, and interpretation of the unknown UV absorber, without expensive new GCM chemistry.</div>
+    </div>
+    <div class="hypothesis-card">
+      <div>
+        <span class="rank-badge">#18</span>
+        <span class="type-tag type-cross_domain_bridge">跨域桥梁</span>
+        <span class="score score-high">新颖性: high</span>
+        <span class="score score-medium">可行性: medium</span>
+      </div>
+      <div class="rq">Can the implicit-solvation DFT workflow (B3LYP-D3BJ/SMD with dielectric tuned to ~100, plus TD-DFT UV-Vis from AutodE-sampled conformers) pre-screen candidate extremophile-relevant biomolecules for both kinetic stability and benign photochemistry in concentrated-acid droplets, and then feed survivors as solute species into the solute-effect CCN treatment of CARMA-class cloud models?</div>
+      <div class="hyp-text"><strong>假说：</strong>If a biomolecule's lowest TD-DFT singlet/triplet excitation energies fall outside the cloud-deck actinic window AND its SMD-modeled protonation/hydrolysis free energy in dielectric-100 solvent is non-spontaneous, then that molecule will be experimentally stable in concentrated H2SO4; the falsifiable claim is that this two-filter DFT score correctly rank-orders measured degradation half-lives of extremophile metabolites in concentrated sulfuric acid, and any molecule passing both filters yet degrading rapidly refutes the transfer.</div>
+      <div class="exp-section">
+        <div class="exp-title">🔬 建议实验</div>
+        <div class="exp-grid">
+          <div class="exp-item"><strong>方案：</strong>Run the v3_009/v3_010 pipeline (AutodE conformer sampling, B3LYP-D3BJ/6-31+G(d,p), SMD dielectric=100, TD-DFT lowest 50 singlet+triplet states) on a panel of extremophile-associated solutes and metabolites; score each by protonation/hydrolysis free energy and by overlap of its UV-Vis absorption with the Venus cloud actinic flux; then insert top-scoring solutes as soluble CCN in a CARMA solute-effect run to test whether they shift activation supersaturation.</div>
+          <div class="exp-item"><strong>指标：</strong>Spearman correlation between the DFT two-filter stability score and measured/literature degradation half-lives, plus the predicted shift in CCN activation supersaturation when each solute is added.</div>
+          <div class="exp-item"><strong>基线：</strong>Empirical 'organics are unstable in H2SO4' assumption and CARMA runs using generic soluble CCN without molecule-specific solute identity.</div>
+          <div class="exp-item"><strong>瓶颈：</strong>Implicit SMD captures equilibrium thermodynamics but not the acid-catalyzed reaction kinetics or proton-transfer transition states that govern real degradation rates, so the score may rank thermodynamic stability rather than the kinetic survival biology cares about.</div>
+        </div>
+      </div>
+      <div class="impact-text">💡 <strong>影响力：</strong>Links habitability/extremophile screening directly to cloud microphysics: a validated DFT pre-filter would let modelers populate cloud droplets with plausibly stable biomolecular solutes and test their microphysical and spectral signatures, sharpening biosignature predictions for Venus cloud missions.</div>
+    </div>
+    <div class="hypothesis-card">
+      <div>
+        <span class="rank-badge">#19</span>
+        <span class="type-tag type-cross_domain_bridge">跨域桥梁</span>
+        <span class="score score-high">新颖性: high</span>
+        <span class="score score-medium">可行性: medium</span>
+      </div>
+      <div class="rq">Can TD-DFT UV-Vis spectra (lowest 50 singlet+triplet states, SMD dielectric=100) computed for amino acids and their acid-protonated forms predict which sulfuric-acid-stable amino acids become UV-photochemically labile under Venus cloud-deck irradiation, complementing the NMR stability data that only probes thermal/chemical stability at 18-80 C?</div>
+      <div class="hyp-text"><strong>假说：</strong>If an amino acid shown by NMR to be thermally backbone-stable in concentrated H2SO4 nonetheless has a TD-DFT-predicted absorption band overlapping the Venus cloud actinic UV window, then it will photodegrade under simulated irradiation despite its chemical stability; an amino acid that is both NMR-stable and TD-DFT-transparent in the actinic window will be photostable, and any reversal of this ordering falsifies the transfer.</div>
+      <div class="exp-section">
+        <div class="exp-title">🔬 建议实验</div>
+        <div class="exp-grid">
+          <div class="exp-item"><strong>方案：</strong>Compute TD-DFT UV-Vis (v3_010 protocol, 50 singlet+triplet states, AutodE conformers, SMD dielectric=100) for protonated forms of the 19 NMR-stable amino acids; overlay predicted absorption with the cloud-deck actinic flux; then experimentally irradiate the same D2SO4 samples used by the NMR study and re-acquire 1H/13C/HMQC spectra to detect photo-induced backbone changes.</div>
+          <div class="exp-item"><strong>指标：</strong>Per-amino-acid actinic-band overlap integral from TD-DFT vs measured post-irradiation NMR degradation (loss of backbone peaks), evaluated as rank correlation and pass/fail classification.</div>
+          <div class="exp-item"><strong>基线：</strong>The thermal-only NMR stability classification (19 stable, tryptophan reactive) without any photochemical dimension.</div>
+          <div class="exp-item"><strong>瓶颈：</strong>TD-DFT vertical excitation energies with B3LYP carry ~0.2-0.5 eV error and omit excited-state reaction dynamics, so band overlap alone may not predict actual photolysis quantum yields; reconciling computed singlet/triplet manifolds with real solar-pumped chemistry in the acid matrix is the key adaptation.</div>
+        </div>
+      </div>
+      <div class="impact-text">💡 <strong>影响力：</strong>Photostability, not just thermal stability, ultimately governs whether organics persist in sunlit Venus cloud droplets; coupling TD-DFT screening to the existing NMR survey adds the missing photochemical axis to habitability assessments.</div>
+    </div>
+    <div class="hypothesis-card">
+      <div>
+        <span class="rank-badge">#20</span>
+        <span class="type-tag type-cross_domain_bridge">跨域桥梁</span>
+        <span class="score score-high">新颖性: high</span>
+        <span class="score score-medium">可行性: medium</span>
+      </div>
+      <div class="rq">Can the B3LYP-D3BJ/6-31+G(d,p) + SMD (epsilon modified to ~100) DFT/TD-DFT workflow used for Venus sulfur species (SO3 phases) be adapted to predict which amino acids are oxidatively degraded versus inert in concentrated D2SO4, specifically explaining why tryptophan alone fully degrades while the other 19 backbones survive?</div>
+      <div class="hyp-text"><strong>假说：</strong>Computed thermodynamics and frontier-orbital descriptors (HOMO energy / vertical ionization potential and the Gibbs free energy of the rate-limiting oxidation/sulfonation step) from the Venus DFT workflow, run with the SMD dielectric tuned to concentrated H2SO4, will rank tryptophan as the most oxidation-susceptible of the 20 amino acids, with a quantitative gap (delta-G or delta-E_HOMO) separating it from the 19 stable ones; if the workflow ranks one or more of the 19 stable amino acids as more reactive than tryptophan, the hypothesis is falsified.</div>
+      <div class="exp-section">
+        <div class="exp-title">🔬 建议实验</div>
+        <div class="exp-grid">
+          <div class="exp-item"><strong>方案：</strong>Run the B3LYP-D3BJ/6-31+G(d,p) Gaussian 16 + SMD workflow (dielectric raised toward H2SO4 values) with AutodE conformational sampling on all 20 biogenic amino acids and their plausible protonated/sulfonated/oxidized intermediates; compute HOMO energies, vertical ionization potentials, and reaction free energies for candidate degradation pathways (e.g., electrophilic attack on the indole ring of Trp by SO3/H2SO4).</div>
+          <div class="exp-item"><strong>指标：</strong>Spearman rank correlation between computed oxidation-susceptibility descriptors and the experimental NMR-observed degradation outcome (Trp degraded vs 19 intact); plus the computed delta-G/delta-E gap separating Trp from the next-most-reactive residue.</div>
+          <div class="exp-item"><strong>基线：</strong>Simple empirical predictors (Hammett constants, gas-phase HOMO without SMD, or bare side-chain pKa) and the experimental NMR stability data from v5_001.</div>
+          <div class="exp-item"><strong>瓶颈：</strong>Implicit SMD parametrized for water poorly represents the speciation, very low water activity, and protonating/sulfonating power of 98% w/w H2SO4; capturing the indole-specific electrophilic mechanism may require explicit H2SO4/SO3 molecules or microsolvation rather than a tuned dielectric.</div>
+        </div>
+      </div>
+      <div class="impact-text">💡 <strong>影响力：</strong>A validated computational screen would let researchers predict organic-molecule stability in Venus cloud droplets without exhaustive wet-chemistry, prioritizing which biomolecules could plausibly persist and guiding habitability assessments and life-detection target selection.</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>万物生 v0.3 三层架构 | Layer 1: 图谱模式检测 → Layer 2: 语义上下文组装 → Layer 3: LLM语义重构</p>
+    <p>引擎: Claude Code × 4路并行 | 模型: GPT + DeepSeek V4 Flash</p>
+    <p style="margin-top:10px">Generated by 灵台 mimo-2-5-pro for 圆酱 🌙</p>
+  </div>
+</div>
+</body>
+</html>
