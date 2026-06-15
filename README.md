@@ -89,7 +89,13 @@ python shengwanwu/collect_rank.py --library library/
 
 ## 许可
 
+**禁止商用** — 本仓库所有内容采用 [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) 许可证。
+
 © 王润圆 2026. 保留所有权利。
+
+- ✅ 允许：分享、改编、学习研究使用
+- ❌ 禁止：任何形式的商业使用
+- 使用时须署名：王润圆 · 昆明医科大学营养与食品卫生学硕士
 
 ---
 
