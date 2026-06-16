@@ -3,136 +3,357 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>生万物论 v0.3 — 从论文到假说的研究引擎</title>
+<title>生万物论 v0.3 — Sheng Wanwu Lun · 从论文到假说的研究引擎</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:"Songti SC","SimSun","Noto Serif SC",serif;background:#0a0a0f;color:#d0d0d8;line-height:1.8;padding:40px 20px}
 .container{max-width:900px;margin:0 auto}
-.hero{text-align:center;padding:60px 20px;background:radial-gradient(ellipse at center,rgba(218,165,32,0.08),transparent 70%);border-radius:20px;margin-bottom:40px}
+.hero{text-align:center;padding:60px 20px;background:radial-gradient(ellipse at center,rgba(218,165,32,0.08),transparent 70%);border-radius:20px;margin-bottom:40px;position:relative;overflow:hidden}
 .hero h1{font-size:3em;color:#daa520;letter-spacing:0.2em;margin-bottom:10px;text-shadow:0 0 40px rgba(218,165,32,0.2)}
-.hero .subtitle{color:#8a8a98;font-size:1.2em;margin-bottom:20px}
+.hero .title-en{font-size:1.4em;color:#b89530;letter-spacing:0.08em;margin-bottom:18px;font-style:italic}
+.hero .subtitle{color:#8a8a98;font-size:1.2em;margin-bottom:6px}
+.hero .subtitle-en{color:#6a6a78;font-size:0.95em;margin-bottom:20px;font-style:italic}
 .author{text-align:center;margin:20px 0;padding:16px;background:rgba(218,165,32,0.05);border:1px solid rgba(218,165,32,0.1);border-radius:12px}
 .author-name{font-size:1.3em;color:#daa520;font-weight:bold}
+.author-name-en{font-size:1em;color:#a08828;font-style:italic}
 .author-info{color:#8a8a98;font-size:0.95em;margin-top:4px}
+.author-info-en{color:#6a6a78;font-size:0.85em;margin-top:2px;font-style:italic}
+.badge{display:inline-flex;align-items:center;gap:8px;margin:18px auto 0;padding:8px 16px;background:rgba(218,165,32,0.08);border:1px solid rgba(218,165,32,0.25);border-radius:20px;font-size:0.82em;color:#c0a040}
+.badge svg{flex-shrink:0}
+.badge a{color:#daa520;text-decoration:none;border-bottom:1px dotted rgba(218,165,32,0.4)}
+.badge a:hover{color:#f0c050}
 .dao{text-align:center;font-size:1.4em;color:#daa520;margin:40px 0;letter-spacing:0.3em;opacity:0.9}
 .dao-line{margin:8px 0;transition:opacity 0.3s}
+.dao-line .en{display:block;font-size:0.42em;color:#7a7a88;letter-spacing:0.04em;margin-top:2px;font-style:italic}
 .section{margin:40px 0;padding:30px;background:rgba(255,255,255,0.02);border-radius:16px;border:1px solid rgba(255,255,255,0.04)}
-.section h2{color:#daa520;font-size:1.6em;margin-bottom:16px;border-bottom:1px solid rgba(218,165,32,0.2);padding-bottom:10px}
+.section h2{color:#daa520;font-size:1.6em;margin-bottom:4px;border-bottom:1px solid rgba(218,165,32,0.2);padding-bottom:10px}
+.section h2 .en{display:block;font-size:0.55em;color:#8a8a98;font-style:italic;letter-spacing:0.05em;margin-top:2px}
 .section p{color:#c0c0c8;margin:10px 0}
+.section p .en{display:block;color:#8a8a98;font-size:0.88em;font-style:italic;margin-top:4px}
 .arch-box{background:rgba(218,165,32,0.03);border-radius:12px;padding:24px;margin:16px 0}
 .arch-step{display:flex;align-items:flex-start;margin:16px 0}
 .arch-num{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#daa520,#b8860b);color:#0a0a0f;font-weight:bold;margin-right:16px;flex-shrink:0}
 .arch-content{flex:1}
 .arch-title{color:#daa520;font-weight:600;margin-bottom:4px}
+.arch-title .en{font-weight:400;color:#9a8830;font-style:italic;font-size:0.85em}
 .arch-desc{color:#a0a0a8;font-size:0.95em}
+.arch-desc .en{display:block;color:#7a7a88;font-size:0.9em;font-style:italic;margin-top:4px}
 .metric-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin:20px 0}
 .metric{background:rgba(255,255,255,0.03);border-radius:10px;padding:20px;text-align:center;border:1px solid rgba(255,255,255,0.05)}
 .metric-num{font-size:2.2em;color:#daa520;font-weight:bold}
 .metric-label{color:#8a8a98;font-size:0.9em;margin-top:4px}
+.metric-label .en{display:block;color:#6a6a78;font-size:0.85em;font-style:italic}
 .result-table{width:100%;border-collapse:collapse;margin:16px 0}
 .result-table th{background:rgba(218,165,32,0.1);color:#daa520;padding:12px;text-align:left;font-size:0.9em}
+.result-table th .en{display:block;font-weight:400;color:#9a8830;font-size:0.82em;font-style:italic}
 .result-table td{padding:12px;border-bottom:1px solid rgba(255,255,255,0.05);color:#c0c0c8;font-size:0.95em}
 .result-table tr:hover{background:rgba(255,255,255,0.02)}
 .tag{display:inline-block;padding:2px 10px;border-radius:10px;font-size:0.8em;margin:2px;background:rgba(218,165,32,0.1);color:#daa520}
+.svg-wrap{text-align:center;margin:30px 0}
+.pipeline-section{margin:40px 0;padding:30px;background:linear-gradient(135deg,rgba(218,165,32,0.04),rgba(255,255,255,0.02));border-radius:16px;border:1px solid rgba(218,165,32,0.12)}
+.pipeline-section h2{color:#daa520;font-size:1.6em;margin-bottom:4px;border-bottom:1px solid rgba(218,165,32,0.2);padding-bottom:10px}
+.pipeline-section h2 .en{display:block;font-size:0.55em;color:#8a8a98;font-style:italic;letter-spacing:0.05em;margin-top:2px}
 .footer{text-align:center;padding:40px;color:#505058;font-size:0.85em;border-top:1px solid rgba(255,255,255,0.05);margin-top:40px}
-@media(max-width:768px){.hero h1{font-size:2em}.dao{font-size:1.1em}}
+.footer .en{color:#454550;font-style:italic}
+@media(max-width:768px){.hero h1{font-size:2em}.hero .title-en{font-size:1em}.dao{font-size:1.1em}}
 </style>
 </head>
 <body>
 <div class="container">
 
 <div class="hero">
+  <svg viewBox="0 0 200 60" style="position:absolute;top:18px;left:50%;transform:translateX(-50%);width:200px;opacity:0.25" aria-hidden="true">
+    <defs>
+      <radialGradient id="sun" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#daa520" stop-opacity="0.6"/>
+        <stop offset="100%" stop-color="#daa520" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <circle cx="100" cy="30" r="28" fill="url(#sun)"/>
+    <g stroke="#daa520" stroke-width="0.6" opacity="0.5">
+      <line x1="100" y1="2" x2="100" y2="14"/>
+      <line x1="100" y1="46" x2="100" y2="58"/>
+      <line x1="72" y1="30" x2="84" y2="30"/>
+      <line x1="116" y1="30" x2="128" y2="30"/>
+      <line x1="80" y1="10" x2="88" y2="18"/>
+      <line x1="112" y1="42" x2="120" y2="50"/>
+      <line x1="120" y1="10" x2="112" y2="18"/>
+      <line x1="88" y1="42" x2="80" y2="50"/>
+    </g>
+  </svg>
   <h1>生 万 物 论</h1>
+  <div class="title-en">Sheng Wanwu Lun — Theory of Generating Infinite Phenomena</div>
   <div class="subtitle">从论文库到研究假说的自动发现引擎</div>
-  <div style="color:#6a6a78;font-size:0.85em;margin-top:8px">v0.3 · 2026年6月</div>
+  <div class="subtitle-en">An engine that discovers research hypotheses, automatically, from a library of papers</div>
+  <div style="color:#6a6a78;font-size:0.85em;margin-top:8px">v0.3 · 2026年6月 / June 2026</div>
+  <div class="badge">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#daa520" stroke-width="1.8" stroke-linecap="round">
+      <path d="M4 8 a8 8 0 1 1 0 8" />
+      <path d="M20 16 a8 8 0 1 1 0 -8" />
+      <polyline points="3,12 6,9 9,12" />
+      <polyline points="21,12 18,15 15,12" />
+    </svg>
+    <span>实现自 <strong>Loop Engineering</strong> 理念 · Implements Loop Engineering — <a href="https://addyo.substack.com/" target="_blank" rel="noopener">after Addy Osmani</a></span>
+  </div>
 </div>
 
 <div class="author">
   <div class="author-name">王润圆</div>
+  <div class="author-name-en">Wang Runyuan</div>
   <div class="author-info">昆明医科大学 · 营养与食品卫生学硕士</div>
+  <div class="author-info-en">Kunming Medical University · Master of Nutrition and Food Hygiene</div>
 </div>
 
 <div class="dao">
-  <div class="dao-line">道 生 一</div>
-  <div class="dao-line">一 生 二</div>
-  <div class="dao-line">二 生 三</div>
-  <div class="dao-line">三 生 万 物</div>
-  <div style="margin-top:16px;font-size:0.6em;color:#6a6a78">——《道德经》第四十二章</div>
+  <div class="dao-line">道 生 一<span class="en">The Dao generates One</span></div>
+  <div class="dao-line">一 生 二<span class="en">One generates Two</span></div>
+  <div class="dao-line">二 生 三<span class="en">Two generates Three</span></div>
+  <div class="dao-line">三 生 万 物<span class="en">Three generates Infinite Phenomena</span></div>
+  <div style="margin-top:16px;font-size:0.6em;color:#6a6a78">——《道德经》第四十二章 / Tao Te Ching, Chapter 42</div>
+</div>
+
+<!-- ========= ORIGINAL FLOW DIAGRAM: 道→一→二→三→万物 (preserved, bilingual labels) ========= -->
+<div class="svg-wrap">
+<svg viewBox="0 0 800 220" style="max-width:100%;height:auto">
+<defs>
+<linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="0%">
+<stop offset="0%" style="stop-color:#daa520;stop-opacity:0.3"/>
+<stop offset="50%" style="stop-color:#daa520;stop-opacity:0.6"/>
+<stop offset="100%" style="stop-color:#daa520;stop-opacity:0.3"/>
+</linearGradient>
+</defs>
+<line x1="60" y1="100" x2="740" y2="100" stroke="url(#g1)" stroke-width="2" stroke-dasharray="5,5"/>
+<circle cx="80" cy="100" r="30" fill="rgba(218,165,32,0.1)" stroke="#daa520" stroke-width="1.5"/>
+<text x="80" y="106" text-anchor="middle" fill="#daa520" font-size="16" font-family="serif">道</text>
+<text x="80" y="150" text-anchor="middle" fill="#8a8a98" font-size="11">论文库</text>
+<text x="80" y="166" text-anchor="middle" fill="#6a6a78" font-size="9" font-style="italic">Library</text>
+<polygon points="150,90 170,100 150,110" fill="#daa520" opacity="0.5"/>
+<circle cx="230" cy="100" r="30" fill="rgba(218,165,32,0.15)" stroke="#daa520" stroke-width="1.5"/>
+<text x="230" y="106" text-anchor="middle" fill="#daa520" font-size="20" font-family="serif">一</text>
+<text x="230" y="150" text-anchor="middle" fill="#8a8a98" font-size="11">蒸馏成库</text>
+<text x="230" y="166" text-anchor="middle" fill="#6a6a78" font-size="9" font-style="italic">Distillation</text>
+<polygon points="300,90 320,100 300,110" fill="#daa520" opacity="0.5"/>
+<circle cx="380" cy="100" r="30" fill="rgba(218,165,32,0.2)" stroke="#daa520" stroke-width="1.5"/>
+<text x="380" y="106" text-anchor="middle" fill="#daa520" font-size="20" font-family="serif">二</text>
+<text x="380" y="150" text-anchor="middle" fill="#8a8a98" font-size="11">图谱成网</text>
+<text x="380" y="166" text-anchor="middle" fill="#6a6a78" font-size="9" font-style="italic">Knowledge Graph</text>
+<polygon points="450,90 470,100 450,110" fill="#daa520" opacity="0.5"/>
+<circle cx="530" cy="100" r="30" fill="rgba(218,165,32,0.25)" stroke="#daa520" stroke-width="1.5"/>
+<text x="530" y="106" text-anchor="middle" fill="#daa520" font-size="20" font-family="serif">三</text>
+<text x="530" y="150" text-anchor="middle" fill="#8a8a98" font-size="11">语义重构</text>
+<text x="530" y="166" text-anchor="middle" fill="#6a6a78" font-size="9" font-style="italic">Semantic Reconstruction</text>
+<polygon points="600,90 620,100 600,110" fill="#daa520" opacity="0.5"/>
+<circle cx="700" cy="100" r="35" fill="rgba(218,165,32,0.3)" stroke="#daa520" stroke-width="2"/>
+<text x="700" y="95" text-anchor="middle" fill="#daa520" font-size="14" font-family="serif">万物</text>
+<text x="700" y="110" text-anchor="middle" fill="#daa520" font-size="11">生发</text>
+<text x="700" y="150" text-anchor="middle" fill="#8a8a98" font-size="11">研究假说</text>
+<text x="700" y="166" text-anchor="middle" fill="#6a6a78" font-size="9" font-style="italic">Hypotheses</text>
+<text x="400" y="40" text-anchor="middle" fill="#daa520" font-size="13" letter-spacing="3" opacity="0.7">由 库 成 论 · 六 眼 生 万 物</text>
+<text x="400" y="58" text-anchor="middle" fill="#8a8a98" font-size="10" letter-spacing="1" opacity="0.6" font-style="italic">From Library to Theory · Six Eyes Generate Infinite Phenomena</text>
+</svg>
+</div>
+
+<!-- ========= NEW: HORIZONTAL PIPELINE SECTION ========= -->
+<div class="pipeline-section">
+  <h2>⚙ 流水线<span class="en">The Pipeline · Papers → Distill → Graph → Hypothesize → Rank → Research Questions</span></h2>
+  <p>从原始文献到可行动的研究问题，整条流水线一气贯通：<span class="en">A single, end-to-end flow turns raw literature into actionable research questions.</span></p>
+  <div class="svg-wrap">
+  <svg viewBox="0 0 880 200" style="max-width:100%;height:auto">
+    <defs>
+      <linearGradient id="pipeFlow" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#daa520" stop-opacity="0.2"/>
+        <stop offset="100%" stop-color="#daa520" stop-opacity="0.7"/>
+      </linearGradient>
+      <marker id="arrowHead" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
+        <path d="M0,0 L6,3 L0,6 Z" fill="#daa520" opacity="0.7"/>
+      </marker>
+    </defs>
+    <!-- baseline track -->
+    <line x1="70" y1="80" x2="810" y2="80" stroke="url(#pipeFlow)" stroke-width="3" marker-end="url(#arrowHead)"/>
+
+    <!-- Stage 1: Papers (stacked documents) -->
+    <g transform="translate(70,80)">
+      <rect x="-22" y="-30" width="34" height="44" rx="3" fill="rgba(218,165,32,0.08)" stroke="#daa520" stroke-width="1.3"/>
+      <rect x="-16" y="-24" width="34" height="44" rx="3" fill="rgba(218,165,32,0.14)" stroke="#daa520" stroke-width="1.3"/>
+      <line x1="-10" y1="-14" x2="10" y2="-14" stroke="#daa520" stroke-width="1" opacity="0.6"/>
+      <line x1="-10" y1="-8" x2="10" y2="-8" stroke="#daa520" stroke-width="1" opacity="0.6"/>
+      <line x1="-10" y1="-2" x2="6" y2="-2" stroke="#daa520" stroke-width="1" opacity="0.6"/>
+      <text x="0" y="48" text-anchor="middle" fill="#daa520" font-size="12">论文</text>
+      <text x="0" y="64" text-anchor="middle" fill="#8a8a98" font-size="10" font-style="italic">Papers</text>
+    </g>
+
+    <!-- Stage 2: Distill (funnel) -->
+    <g transform="translate(218,80)">
+      <polygon points="-22,-22 22,-22 6,8 6,22 -6,22 -6,8" fill="rgba(218,165,32,0.12)" stroke="#daa520" stroke-width="1.3"/>
+      <circle cx="-8" cy="-12" r="1.6" fill="#daa520"/>
+      <circle cx="6" cy="-8" r="1.6" fill="#daa520"/>
+      <circle cx="0" cy="2" r="1.6" fill="#daa520"/>
+      <circle cx="0" cy="26" r="1.8" fill="#daa520"/>
+      <text x="0" y="48" text-anchor="middle" fill="#daa520" font-size="12">蒸馏</text>
+      <text x="0" y="64" text-anchor="middle" fill="#8a8a98" font-size="10" font-style="italic">Distill</text>
+    </g>
+
+    <!-- Stage 3: Graph (nodes + edges) -->
+    <g transform="translate(366,80)">
+      <line x1="-16" y1="-14" x2="14" y2="6" stroke="#daa520" stroke-width="1" opacity="0.6"/>
+      <line x1="14" y1="-12" x2="-12" y2="12" stroke="#daa520" stroke-width="1" opacity="0.6"/>
+      <line x1="-16" y1="-14" x2="14" y2="-12" stroke="#daa520" stroke-width="1" opacity="0.6"/>
+      <circle cx="-16" cy="-14" r="5" fill="rgba(218,165,32,0.3)" stroke="#daa520" stroke-width="1.2"/>
+      <circle cx="14" cy="-12" r="5" fill="rgba(218,165,32,0.3)" stroke="#daa520" stroke-width="1.2"/>
+      <circle cx="14" cy="6" r="5" fill="rgba(218,165,32,0.3)" stroke="#daa520" stroke-width="1.2"/>
+      <circle cx="-12" cy="12" r="5" fill="rgba(218,165,32,0.3)" stroke="#daa520" stroke-width="1.2"/>
+      <text x="0" y="48" text-anchor="middle" fill="#daa520" font-size="12">图谱</text>
+      <text x="0" y="64" text-anchor="middle" fill="#8a8a98" font-size="10" font-style="italic">Graph</text>
+    </g>
+
+    <!-- Stage 4: Hypothesize (lightbulb / spark) -->
+    <g transform="translate(514,80)">
+      <circle cx="0" cy="-6" r="14" fill="rgba(218,165,32,0.12)" stroke="#daa520" stroke-width="1.3"/>
+      <rect x="-5" y="6" width="10" height="6" rx="1.5" fill="rgba(218,165,32,0.3)" stroke="#daa520" stroke-width="1"/>
+      <line x1="0" y1="-26" x2="0" y2="-22" stroke="#daa520" stroke-width="1.2"/>
+      <line x1="-16" y1="-6" x2="-20" y2="-6" stroke="#daa520" stroke-width="1.2"/>
+      <line x1="16" y1="-6" x2="20" y2="-6" stroke="#daa520" stroke-width="1.2"/>
+      <line x1="-13" y1="-18" x2="-16" y2="-21" stroke="#daa520" stroke-width="1.2"/>
+      <line x1="13" y1="-18" x2="16" y2="-21" stroke="#daa520" stroke-width="1.2"/>
+      <text x="0" y="48" text-anchor="middle" fill="#daa520" font-size="12">假说</text>
+      <text x="0" y="64" text-anchor="middle" fill="#8a8a98" font-size="10" font-style="italic">Hypothesize</text>
+    </g>
+
+    <!-- Stage 5: Rank (sorted bars) -->
+    <g transform="translate(662,80)">
+      <rect x="-18" y="-2" width="8" height="16" fill="rgba(218,165,32,0.5)" rx="1.5"/>
+      <rect x="-6" y="-10" width="8" height="24" fill="rgba(218,165,32,0.4)" rx="1.5"/>
+      <rect x="6" y="-20" width="8" height="34" fill="rgba(218,165,32,0.3)" stroke="#daa520" stroke-width="0.8" rx="1.5"/>
+      <text x="0" y="48" text-anchor="middle" fill="#daa520" font-size="12">排序</text>
+      <text x="0" y="64" text-anchor="middle" fill="#8a8a98" font-size="10" font-style="italic">Rank</text>
+    </g>
+
+    <!-- Stage 6: Research Questions (target / question) -->
+    <g transform="translate(810,80)">
+      <circle cx="0" cy="-4" r="16" fill="rgba(218,165,32,0.18)" stroke="#daa520" stroke-width="1.6"/>
+      <circle cx="0" cy="-4" r="9" fill="none" stroke="#daa520" stroke-width="1" opacity="0.6"/>
+      <text x="0" y="1" text-anchor="middle" fill="#daa520" font-size="16" font-family="serif">?</text>
+      <text x="0" y="48" text-anchor="middle" fill="#daa520" font-size="12">研究问题</text>
+      <text x="0" y="64" text-anchor="middle" fill="#8a8a98" font-size="9" font-style="italic">Research Qs</text>
+    </g>
+  </svg>
+  </div>
 </div>
 
 <div class="section">
-  <h2>🌿 缘起</h2>
-  <p>世间万般学问，散落于千万论文之中。如夜空繁星，各自璀璨，却鲜有人将其连缀成图。</p>
-  <p>《生万物论》所求者，非替代人之思考，乃为研究者提供一副"自动望远镜"——从浩瀚文献中，蒸馏知识、编织图谱、发现矛盾、生发假说。</p>
-  <p>一如道家所言：从混沌（原始论文库）中生出秩序（知识图谱），秩序中孕育变化（假说种子），变化中绽放万相（可行动的研究问题）。</p>
+  <h2>🌿 缘起<span class="en">Origin</span></h2>
+  <p>世间万般学问，散落于千万论文之中。如夜空繁星，各自璀璨，却鲜有人将其连缀成图。
+    <span class="en">All the world's knowledge lies scattered across millions of papers — like stars in the night sky, each brilliant on its own, yet few have drawn the lines between them.</span></p>
+  <p>《生万物论》所求者，非替代人之思考，乃为研究者提供一副"自动望远镜"——从浩瀚文献中，蒸馏知识、编织图谱、发现矛盾、生发假说。
+    <span class="en">Sheng Wanwu Lun does not seek to replace human thought, but to give the researcher an "automatic telescope" — distilling knowledge, weaving a graph, surfacing contradictions, and generating hypotheses from the vast literature.</span></p>
+  <p>一如道家所言：从混沌（原始论文库）中生出秩序（知识图谱），秩序中孕育变化（假说种子），变化中绽放万相（可行动的研究问题）。
+    <span class="en">As the Daoists say: from chaos (the raw library) order is born (the knowledge graph); within order, change is conceived (hypothesis seeds); and from change, the ten-thousand forms bloom (actionable research questions).</span></p>
+  <div class="svg-wrap">
+  <svg viewBox="0 0 600 120" style="max-width:100%;height:auto" aria-hidden="true">
+    <!-- chaos -> order: scattered dots condensing into a constellation -->
+    <g opacity="0.8">
+      <circle cx="40" cy="30" r="1.5" fill="#8a8a98"/><circle cx="70" cy="80" r="1.5" fill="#8a8a98"/>
+      <circle cx="55" cy="55" r="1.5" fill="#8a8a98"/><circle cx="90" cy="40" r="1.5" fill="#8a8a98"/>
+      <circle cx="30" cy="90" r="1.5" fill="#8a8a98"/><circle cx="100" cy="95" r="1.5" fill="#8a8a98"/>
+      <text x="65" y="115" text-anchor="middle" fill="#6a6a78" font-size="10" font-style="italic">chaos · 混沌</text>
+    </g>
+    <line x1="140" y1="60" x2="220" y2="60" stroke="#daa520" stroke-width="1" stroke-dasharray="4,4" opacity="0.5" marker-end="url(#arrowHead)"/>
+    <g transform="translate(300,0)">
+      <line x1="40" y1="30" x2="90" y2="40" stroke="#daa520" stroke-width="0.8" opacity="0.5"/>
+      <line x1="90" y1="40" x2="60" y2="80" stroke="#daa520" stroke-width="0.8" opacity="0.5"/>
+      <line x1="60" y1="80" x2="40" y2="30" stroke="#daa520" stroke-width="0.8" opacity="0.5"/>
+      <line x1="90" y1="40" x2="120" y2="70" stroke="#daa520" stroke-width="0.8" opacity="0.5"/>
+      <circle cx="40" cy="30" r="4" fill="rgba(218,165,32,0.3)" stroke="#daa520" stroke-width="1"/>
+      <circle cx="90" cy="40" r="4" fill="rgba(218,165,32,0.3)" stroke="#daa520" stroke-width="1"/>
+      <circle cx="60" cy="80" r="4" fill="rgba(218,165,32,0.3)" stroke="#daa520" stroke-width="1"/>
+      <circle cx="120" cy="70" r="4" fill="rgba(218,165,32,0.3)" stroke="#daa520" stroke-width="1"/>
+      <text x="75" y="115" text-anchor="middle" fill="#9a8830" font-size="10" font-style="italic">order · 秩序</text>
+    </g>
+    <line x1="450" y1="60" x2="520" y2="60" stroke="#daa520" stroke-width="1" stroke-dasharray="4,4" opacity="0.5" marker-end="url(#arrowHead)"/>
+    <g transform="translate(550,60)">
+      <circle cx="0" cy="0" r="3" fill="#daa520"/>
+      <g stroke="#daa520" stroke-width="0.9" opacity="0.7">
+        <line x1="0" y1="0" x2="0" y2="-18"/><line x1="0" y1="0" x2="16" y2="-9"/>
+        <line x1="0" y1="0" x2="16" y2="9"/><line x1="0" y1="0" x2="0" y2="18"/>
+        <line x1="0" y1="0" x2="-16" y2="9"/><line x1="0" y1="0" x2="-16" y2="-9"/>
+      </g>
+      <text x="0" y="55" text-anchor="middle" fill="#daa520" font-size="10" font-style="italic">bloom · 万相</text>
+    </g>
+  </svg>
+  </div>
 </div>
 
 <div class="section">
-  <h2>☰ 三生架构</h2>
-  
+  <h2>☰ 三生架构<span class="en">The Three-Generations Architecture</span></h2>
+
   <div class="arch-box">
     <div class="arch-step">
       <span class="arch-num">道</span>
       <div class="arch-content">
-        <div class="arch-title">原始论文库 · 道之混沌</div>
-        <div class="arch-desc">arXiv PDF、书籍、数据库——未加工的知识矿藏。如"道"之初，浑然未分。</div>
+        <div class="arch-title">原始论文库 · 道之混沌 <span class="en">Raw Library — the Chaos of the Dao</span></div>
+        <div class="arch-desc">arXiv PDF、书籍、数据库——未加工的知识矿藏。如"道"之初，浑然未分。
+          <span class="en">arXiv PDFs, books, databases — an unrefined ore of knowledge. Like the Dao at its origin: whole, undivided, undifferentiated.</span></div>
       </div>
     </div>
-    
+
     <div class="arch-step">
       <span class="arch-num">一</span>
       <div class="arch-content">
-        <div class="arch-title">蒸馏成库 · 道生一</div>
-        <div class="arch-desc">将论文全文蒸馏为结构化知识节点（method/finding/concept/limitation），如"一"之始立——从混沌中提取秩序。</div>
+        <div class="arch-title">蒸馏成库 · 道生一 <span class="en">Distillation — The Dao generates One</span></div>
+        <div class="arch-desc">将论文全文蒸馏为结构化知识节点（method/finding/concept/limitation），如"一"之始立——从混沌中提取秩序。
+          <span class="en">Full-text papers are distilled into structured knowledge nodes (method / finding / concept / limitation) — the first "One" arising, order extracted from chaos.</span></div>
         <div style="margin-top:8px">
-          <span class="tag">全文提取</span>
+          <span class="tag">全文提取 · Full-text</span>
           <span class="tag">PyMuPDF</span>
           <span class="tag">trafilatura</span>
           <span class="tag">JSONL</span>
         </div>
       </div>
     </div>
-    
+
     <div class="arch-step">
       <span class="arch-num">二</span>
       <div class="arch-content">
-        <div class="arch-title">图谱成网 · 一生二</div>
-        <div class="arch-desc">知识节点之间，以共享标签自动建立连接（edges），编织成跨论文知识图谱。在图谱中检测六种模式：方法缺失、概念矛盾、跨域桥梁、共享关键词、传递断链、枢纽共现。如"二"之对立——阴与阳，同与异，连接与断裂。</div>
+        <div class="arch-title">图谱成网 · 一生二 <span class="en">Knowledge Graph — One generates Two</span></div>
+        <div class="arch-desc">知识节点之间，以共享标签自动建立连接（edges），编织成跨论文知识图谱。在图谱中检测六种模式：方法缺失、概念矛盾、跨域桥梁、共享关键词、传递断链、枢纽共现。如"二"之对立——阴与阳，同与异，连接与断裂。
+          <span class="en">Knowledge nodes are auto-linked by shared tags into edges, weaving a cross-paper knowledge graph. Six patterns are detected: method gaps, concept contradictions, cross-domain bridges, shared keywords, broken transitive links, and hub co-occurrence. Like the "Two" of opposition — yin and yang, sameness and difference, connection and rupture.</span></div>
         <div style="margin-top:8px">
           <span class="tag">共享tag→edges</span>
-          <span class="tag">6种检测模式</span>
+          <span class="tag">6种检测模式 · 6 patterns</span>
           <span class="tag">v0.2 scanner</span>
         </div>
       </div>
     </div>
-    
+
     <div class="arch-step">
       <span class="arch-num">三</span>
       <div class="arch-content">
-        <div class="arch-title">语义重构 · 二生三</div>
-        <div class="arch-desc">三层语义重构架构，将机械的图谱模式转化为有意义的科学假说：</div>
+        <div class="arch-title">语义重构 · 二生三 <span class="en">Semantic Reconstruction — Two generates Three</span></div>
+        <div class="arch-desc">三层语义重构架构，将机械的图谱模式转化为有意义的科学假说：
+          <span class="en">A three-layer reconstruction architecture turns mechanical graph patterns into meaningful scientific hypotheses:</span></div>
         <div style="margin-top:8px;font-size:0.95em;color:#a0a0a8">
-          <strong style="color:#daa520">Layer 1</strong> — 图谱模式检测（v0.2）→ 原始假说候选<br>
-          <strong style="color:#daa520">Layer 2</strong> — 语义上下文组装 → 假说上下文包（蒸馏全文 + 模式语义 + 关联边）<br>
-          <strong style="color:#daa520">Layer 3</strong> — LLM语义重构 → 结构化研究问题（含实验方案 + 证伪条件）
+          <strong style="color:#daa520">Layer 1</strong> — 图谱模式检测（v0.2）→ 原始假说候选 <span style="color:#7a7a88;font-style:italic">/ Graph pattern detection → raw hypothesis candidates</span><br>
+          <strong style="color:#daa520">Layer 2</strong> — 语义上下文组装 → 假说上下文包（蒸馏全文 + 模式语义 + 关联边） <span style="color:#7a7a88;font-style:italic">/ Semantic context assembly → hypothesis context packs (distilled text + pattern semantics + linked edges)</span><br>
+          <strong style="color:#daa520">Layer 3</strong> — LLM语义重构 → 结构化研究问题（含实验方案 + 证伪条件） <span style="color:#7a7a88;font-style:italic">/ LLM semantic reconstruction → structured research questions (with experiment plan + falsification conditions)</span>
         </div>
         <div style="margin-top:8px">
-          <span class="tag">类型特定prompt模板</span>
-          <span class="tag">并行分神处理</span>
-          <span class="tag">DeepSeek/Claude Code</span>
+          <span class="tag">类型特定prompt · Type-specific prompts</span>
+          <span class="tag">并行分神 · Parallel daemons</span>
+          <span class="tag">DeepSeek / Claude Code</span>
         </div>
       </div>
     </div>
-    
+
     <div class="arch-step">
       <span class="arch-num">万</span>
       <div class="arch-content">
-        <div class="arch-title">万物生发 · 三生万物</div>
-        <div class="arch-desc">从去重、排序后的假说池中，精选 Top-N 可行动研究问题。每条假说包含：可证伪声明、实验方案、评估指标、基线对比、预期瓶颈、新颖性/可行性/影响力评分。如"万物"之繁盛——从简单规则中，绽放出无尽的研究可能。</div>
+        <div class="arch-title">万物生发 · 三生万物 <span class="en">Generating Infinite Phenomena — Three generates Infinite Phenomena</span></div>
+        <div class="arch-desc">从去重、排序后的假说池中，精选 Top-N 可行动研究问题。每条假说包含：可证伪声明、实验方案、评估指标、基线对比、预期瓶颈、新颖性/可行性/影响力评分。如"万物"之繁盛——从简单规则中，绽放出无尽的研究可能。
+          <span class="en">From a deduplicated, ranked pool, the Top-N actionable research questions are selected. Each hypothesis carries a falsifiable claim, an experiment plan, evaluation metrics, baseline comparisons, anticipated bottlenecks, and novelty / feasibility / impact scores. Like the flourishing of the ten-thousand things — from simple rules, endless research possibilities bloom.</span></div>
         <div style="margin-top:8px">
-          <span class="tag">去重</span>
+          <span class="tag">去重 · Dedup</span>
           <span class="tag">Grounding check</span>
-          <span class="tag">优先级排序</span>
+          <span class="tag">优先级排序 · Priority rank</span>
           <span class="tag">Top-20</span>
         </div>
       </div>
@@ -141,23 +362,24 @@ body{font-family:"Songti SC","SimSun","Noto Serif SC",serif;background:#0a0a0f;c
 </div>
 
 <div class="section">
-  <h2>📊 实测验证</h2>
-  <p>《生万物论》已在三个不同学科领域验证有效：</p>
-  
+  <h2>📊 实测验证<span class="en">Empirical Validation</span></h2>
+  <p>《生万物论》已在三个不同学科领域验证有效：
+    <span class="en">Sheng Wanwu Lun has been validated across distinct scientific domains:</span></p>
+
   <table class="result-table">
     <thead>
       <tr>
-        <th>领域</th>
-        <th>论文</th>
-        <th>知识节点</th>
-        <th>原始假说</th>
-        <th>独特研究问题</th>
-        <th>Top精选</th>
+        <th>领域<span class="en">Domain</span></th>
+        <th>论文<span class="en">Papers</span></th>
+        <th>知识节点<span class="en">Nodes</span></th>
+        <th>原始假说<span class="en">Raw Hyp.</span></th>
+        <th>独特研究问题<span class="en">Unique RQs</span></th>
+        <th>Top精选<span class="en">Top Pick</span></th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>世界模型 (AI/ML)</td>
+        <td>世界模型 (AI/ML)<br><span style="color:#7a7a88;font-style:italic;font-size:0.85em">World Models</span></td>
         <td>25</td>
         <td>231</td>
         <td>352</td>
@@ -165,7 +387,7 @@ body{font-family:"Songti SC","SimSun","Noto Serif SC",serif;background:#0a0a0f;c
         <td>Top-20</td>
       </tr>
       <tr>
-        <td>金星云层 (行星科学)</td>
+        <td>金星云层 (行星科学)<br><span style="color:#7a7a88;font-style:italic;font-size:0.85em">Venus Clouds (planetary)</span></td>
         <td>6</td>
         <td>175</td>
         <td>171</td>
@@ -173,7 +395,7 @@ body{font-family:"Songti SC","SimSun","Noto Serif SC",serif;background:#0a0a0f;c
         <td>Top-20</td>
       </tr>
       <tr>
-        <td>金星云层 (物理版)</td>
+        <td>金星云层 (物理版)<br><span style="color:#7a7a88;font-style:italic;font-size:0.85em">Venus Clouds (physics)</span></td>
         <td>6</td>
         <td>175</td>
         <td>21</td>
@@ -181,75 +403,137 @@ body{font-family:"Songti SC","SimSun","Noto Serif SC",serif;background:#0a0a0f;c
         <td>Top-15</td>
       </tr>
       <tr>
-        <td>太阳风 (天体物理)</td>
+        <td>太阳风 (天体物理)<br><span style="color:#7a7a88;font-style:italic;font-size:0.85em">Solar Wind (astrophysics)</span></td>
         <td>3</td>
         <td>50</td>
         <td>36</td>
         <td>10</td>
-        <td>7个未验证</td>
+        <td>7个未验证 / 7 unverified</td>
       </tr>
     </tbody>
   </table>
-  
+
   <div class="metric-grid">
     <div class="metric">
       <div class="metric-num">40</div>
-      <div class="metric-label">输入论文总数</div>
+      <div class="metric-label">输入论文总数<span class="en">Total input papers</span></div>
     </div>
     <div class="metric">
       <div class="metric-num">631</div>
-      <div class="metric-label">蒸馏知识节点</div>
+      <div class="metric-label">蒸馏知识节点<span class="en">Distilled nodes</span></div>
     </div>
     <div class="metric">
       <div class="metric-num">580</div>
-      <div class="metric-label">生成假说总数</div>
+      <div class="metric-label">生成假说总数<span class="en">Hypotheses generated</span></div>
     </div>
     <div class="metric">
       <div class="metric-num">4</div>
-      <div class="metric-label">验证学科领域</div>
+      <div class="metric-label">验证学科领域<span class="en">Validated domains</span></div>
     </div>
+  </div>
+
+  <!-- ========= ORIGINAL BAR CHART (preserved, bilingual labels) ========= -->
+  <div class="svg-wrap">
+  <svg viewBox="0 0 800 270" style="max-width:100%;height:auto">
+    <text x="400" y="20" text-anchor="middle" fill="#daa520" font-size="14" letter-spacing="2" opacity="0.8">各领域假说生成对比</text>
+    <text x="400" y="36" text-anchor="middle" fill="#8a8a98" font-size="10" opacity="0.6" font-style="italic">Hypothesis generation across domains</text>
+    <line x1="80" y1="230" x2="760" y2="230" stroke="#333" stroke-width="1"/>
+    <line x1="80" y1="70" x2="80" y2="230" stroke="#333" stroke-width="1"/>
+    <text x="60" y="75" text-anchor="end" fill="#8a8a98" font-size="10">400</text>
+    <text x="60" y="150" text-anchor="end" fill="#8a8a98" font-size="10">200</text>
+    <text x="60" y="230" text-anchor="end" fill="#8a8a98" font-size="10">0</text>
+    <line x1="78" y1="75" x2="760" y2="75" stroke="#333" stroke-width="0.5" stroke-dasharray="3,3" opacity="0.3"/>
+    <line x1="78" y1="150" x2="760" y2="150" stroke="#333" stroke-width="0.5" stroke-dasharray="3,3" opacity="0.3"/>
+    <!-- World Models: 352 raw, 107 unique -->
+    <rect x="130" y="98" width="50" height="132" fill="rgba(218,165,32,0.3)" stroke="#daa520" stroke-width="1" rx="3"/>
+    <text x="155" y="93" text-anchor="middle" fill="#daa520" font-size="12">352</text>
+    <rect x="185" y="190" width="30" height="40" fill="rgba(218,165,32,0.5)" rx="3"/>
+    <text x="200" y="185" text-anchor="middle" fill="#daa520" font-size="10">107</text>
+    <text x="172" y="248" text-anchor="middle" fill="#8a8a98" font-size="10">世界模型</text>
+    <text x="172" y="261" text-anchor="middle" fill="#6a6a78" font-size="9" font-style="italic">World Models</text>
+    <!-- Venus Method: 171 raw, 96 unique -->
+    <rect x="300" y="166" width="50" height="64" fill="rgba(218,165,32,0.3)" stroke="#daa520" stroke-width="1" rx="3"/>
+    <text x="325" y="161" text-anchor="middle" fill="#daa520" font-size="12">171</text>
+    <rect x="355" y="194" width="30" height="36" fill="rgba(218,165,32,0.5)" rx="3"/>
+    <text x="370" y="189" text-anchor="middle" fill="#daa520" font-size="10">96</text>
+    <text x="342" y="248" text-anchor="middle" fill="#8a8a98" font-size="10">金星(方法)</text>
+    <text x="342" y="261" text-anchor="middle" fill="#6a6a78" font-size="9" font-style="italic">Venus (method)</text>
+    <!-- Venus Physics: 21 raw, 18 unique -->
+    <rect x="470" y="222" width="50" height="8" fill="rgba(218,165,32,0.3)" stroke="#daa520" stroke-width="1" rx="3"/>
+    <text x="495" y="217" text-anchor="middle" fill="#daa520" font-size="12">21</text>
+    <rect x="525" y="223" width="30" height="7" fill="rgba(218,165,32,0.5)" rx="3"/>
+    <text x="540" y="218" text-anchor="middle" fill="#daa520" font-size="10">18</text>
+    <text x="512" y="248" text-anchor="middle" fill="#8a8a98" font-size="10">金星(物理)</text>
+    <text x="512" y="261" text-anchor="middle" fill="#6a6a78" font-size="9" font-style="italic">Venus (physics)</text>
+    <!-- Solar Wind: 36 raw, 10 unique -->
+    <rect x="640" y="217" width="50" height="13" fill="rgba(218,165,32,0.3)" stroke="#daa520" stroke-width="1" rx="3"/>
+    <text x="665" y="212" text-anchor="middle" fill="#daa520" font-size="12">36</text>
+    <rect x="695" y="226" width="30" height="4" fill="rgba(218,165,32,0.5)" rx="3"/>
+    <text x="710" y="221" text-anchor="middle" fill="#daa520" font-size="10">10</text>
+    <text x="682" y="248" text-anchor="middle" fill="#8a8a98" font-size="10">太阳风</text>
+    <text x="682" y="261" text-anchor="middle" fill="#6a6a78" font-size="9" font-style="italic">Solar Wind</text>
+    <!-- Legend -->
+    <rect x="540" y="52" width="12" height="12" fill="rgba(218,165,32,0.3)" stroke="#daa520" stroke-width="1" rx="2"/>
+    <text x="558" y="62" fill="#8a8a98" font-size="10">原始假说 / Raw</text>
+    <rect x="668" y="52" width="12" height="12" fill="rgba(218,165,32,0.5)" rx="2"/>
+    <text x="686" y="62" fill="#8a8a98" font-size="10">独特问题 / Unique</text>
+  </svg>
   </div>
 </div>
 
 <div class="section">
-  <h2>🔬 技术栈</h2>
-  <p>运行于灵台（LingTai）生态，使用原生能力组合：</p>
+  <h2>🔬 技术栈<span class="en">Tech Stack</span></h2>
+  <p>运行于灵台（LingTai）生态，使用原生能力组合：
+    <span class="en">Built on the LingTai ecosystem, composing native capabilities:</span></p>
   <table class="result-table">
     <thead>
-      <tr><th>环节</th><th>工具</th><th>说明</th></tr>
+      <tr>
+        <th>环节<span class="en">Stage</span></th>
+        <th>工具<span class="en">Tooling</span></th>
+        <th>说明<span class="en">Notes</span></th>
+      </tr>
     </thead>
     <tbody>
-      <tr><td>论文获取</td><td>curl + trafilatura + PyMuPDF</td><td>PDF/HTML全文提取</td></tr>
-      <tr><td>知识蒸馏</td><td>并行分神（daemon）</td><td>DeepSeek V4 Flash / Claude Code</td></tr>
-      <tr><td>图谱构建</td><td>Python（共享tag→edges）</td><td>自动化跨论文连接</td></tr>
-      <tr><td>假说检测</td><td>hypothesis_scan_v02.py</td><td>6种模式检测器</td></tr>
-      <tr><td>语义重构</td><td>hypothesis_reconstruct_v03.py</td><td>三层架构 + 类型特定prompt</td></tr>
-      <tr><td>假说处理</td><td>并行分神批处理</td><td>分批→派发→write-as-you-go→收结果</td></tr>
-      <tr><td>排序输出</td><td>v03_collect_and_rank.py</td><td>去重+grounding+优先级排序</td></tr>
+      <tr><td>论文获取<br><span style="color:#7a7a88;font-style:italic;font-size:0.85em">Acquisition</span></td><td>curl + trafilatura + PyMuPDF</td><td>PDF/HTML全文提取 · full-text extraction</td></tr>
+      <tr><td>知识蒸馏<br><span style="color:#7a7a88;font-style:italic;font-size:0.85em">Distillation</span></td><td>并行分神（daemon） · parallel daemons</td><td>DeepSeek V4 Flash / Claude Code</td></tr>
+      <tr><td>图谱构建<br><span style="color:#7a7a88;font-style:italic;font-size:0.85em">Graph build</span></td><td>Python（共享tag→edges）</td><td>自动化跨论文连接 · auto cross-paper links</td></tr>
+      <tr><td>假说检测<br><span style="color:#7a7a88;font-style:italic;font-size:0.85em">Detection</span></td><td>hypothesis_scan_v02.py</td><td>6种模式检测器 · 6-pattern detector</td></tr>
+      <tr><td>语义重构<br><span style="color:#7a7a88;font-style:italic;font-size:0.85em">Reconstruction</span></td><td>hypothesis_reconstruct_v03.py</td><td>三层架构 + 类型特定prompt · 3-layer + typed prompts</td></tr>
+      <tr><td>假说处理<br><span style="color:#7a7a88;font-style:italic;font-size:0.85em">Processing</span></td><td>并行分神批处理 · batched daemons</td><td>分批→派发→write-as-you-go→收结果</td></tr>
+      <tr><td>排序输出<br><span style="color:#7a7a88;font-style:italic;font-size:0.85em">Rank & emit</span></td><td>v03_collect_and_rank.py</td><td>去重+grounding+优先级排序 · dedup + grounding + ranking</td></tr>
     </tbody>
   </table>
 </div>
 
 <div class="section">
-  <h2>💭 设计哲学</h2>
-  <p><strong style="color:#daa520">由库成论法</strong>：不依赖预训练知识，一切假说从蒸馏的论文全文中生成。每条假说可追溯到源文献。</p>
-  <p><strong style="color:#daa520">六眼旁观</strong>：模式检测如六只眼睛，分别审视方法缺失、概念矛盾、跨域桥梁、关键词暗连、传递断裂、枢纽汇聚。多视角才能见全局。</p>
-  <p><strong style="color:#daa520">论证门与验证门</strong>：假说不经论证不成形，不经验证不出口。生成可追溯、可证伪、可验证的候选，不自动证明理论。</p>
-  <p><strong style="color:#daa520">低功耗之道</strong>：确定性工作交脚本，判断性工作交LLM。人审稿拆小单元。失败时修最小失败层，不整炉重炼。</p>
+  <h2>💭 设计哲学<span class="en">Design Philosophy</span></h2>
+  <p><strong style="color:#daa520">由库成论法 / From Library to Theory</strong>：不依赖预训练知识，一切假说从蒸馏的论文全文中生成。每条假说可追溯到源文献。
+    <span class="en">No reliance on pretrained knowledge — every hypothesis is generated from distilled full-text papers, and each one is traceable back to its source literature.</span></p>
+  <p><strong style="color:#daa520">六眼旁观 / Six Eyes Watching</strong>：模式检测如六只眼睛，分别审视方法缺失、概念矛盾、跨域桥梁、关键词暗连、传递断裂、枢纽汇聚。多视角才能见全局。
+    <span class="en">Pattern detection works like six eyes — each examining method gaps, concept contradictions, cross-domain bridges, hidden keyword links, broken transitivity, and hub convergence. Only many perspectives reveal the whole.</span></p>
+  <p><strong style="color:#daa520">论证门与验证门 / Gates of Argument and Verification</strong>：假说不经论证不成形，不经验证不出口。生成可追溯、可证伪、可验证的候选，不自动证明理论。
+    <span class="en">No hypothesis takes shape without argument, none ships without verification. The engine produces traceable, falsifiable, verifiable candidates — it does not auto-prove theories.</span></p>
+  <p><strong style="color:#daa520">低功耗之道 / The Way of Low Power</strong>：确定性工作交脚本，判断性工作交LLM。人审稿拆小单元。失败时修最小失败层，不整炉重炼。
+    <span class="en">Deterministic work goes to scripts, judgment to the LLM. Human review is broken into small units. On failure, repair the smallest failing layer — never re-smelt the whole furnace.</span></p>
 </div>
 
 <div class="section">
-  <h2>🔮 未来展望</h2>
-  <p><strong>v0.4 规划</strong>：引入 embedding-based 语义聚类（替代 tag-based），实现更精准的假说去重与主题归并。</p>
-  <p><strong>开放假说</strong>：研究者可输入自己的假说，引擎自动在图谱中寻找支持/反对证据。</p>
-  <p><strong>回流机制</strong>：验证结果回流知识库，形成"蒸馏→假说→实验→回流"的闭环。</p>
+  <h2>🔮 未来展望<span class="en">Future Outlook</span></h2>
+  <p><strong>v0.4 规划 / v0.4 plan</strong>：引入 embedding-based 语义聚类（替代 tag-based），实现更精准的假说去重与主题归并。
+    <span class="en">Introduce embedding-based semantic clustering (replacing tag-based) for more precise hypothesis dedup and topic merging.</span></p>
+  <p><strong>开放假说 / Open Hypotheses</strong>：研究者可输入自己的假说，引擎自动在图谱中寻找支持/反对证据。
+    <span class="en">Researchers can submit their own hypotheses, and the engine will automatically search the graph for supporting and opposing evidence.</span></p>
+  <p><strong>回流机制 / Feedback Loop</strong>：验证结果回流知识库，形成"蒸馏→假说→实验→回流"的闭环。
+    <span class="en">Verification results flow back into the knowledge base, closing the loop: distill → hypothesize → experiment → feed back.</span></p>
 </div>
 
 <div class="footer">
-  <p>《生万物论》 v0.3</p>
+  <p>《生万物论》 v0.3 · Sheng Wanwu Lun</p>
   <p>作者：王润圆 · 昆明医科大学营养与食品卫生学硕士</p>
+  <p class="en">Wang Runyuan · Kunming Medical University · Master of Nutrition and Food Hygiene</p>
   <p style="margin-top:8px;color:#6a6a78">道生一 · 一生二 · 二生三 · 三生万物</p>
-  <p style="margin-top:8px;color:#505058">Powered by 灵台 LingTai · 2026</p>
+  <p class="en" style="margin-top:2px;color:#505058">The Dao generates One · One generates Two · Two generates Three · Three generates Infinite Phenomena</p>
+  <p style="margin-top:8px;color:#505058">Implements Loop Engineering (after Addy Osmani) · Powered by 灵台 LingTai · 2026</p>
 </div>
 
 </div>
