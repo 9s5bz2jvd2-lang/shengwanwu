@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 320" font-family="serif">
+  <rect width="800" height="320" fill="#fafafa"/>
+  <text x="400" y="30" text-anchor="middle" fill="#b8860b" font-size="18" letter-spacing="3" font-weight="bold">Sheng Wanwu — From Papers to Hypotheses</text>
+  <text x="400" y="50" text-anchor="middle" fill="#999" font-size="12">生万物论 · 由库成论 · 六眼生万物</text>
+  
+  <!-- Pipeline boxes -->
+  <rect x="20" y="80" width="120" height="60" rx="8" fill="#fff8e7" stroke="#daa520" stroke-width="1.5"/>
+  <text x="80" y="105" text-anchor="middle" fill="#8a6d00" font-size="14" font-weight="bold">Papers</text>
+  <text x="80" y="122" text-anchor="middle" fill="#999" font-size="11">论文库</text>
+  
+  <rect x="170" y="80" width="120" height="60" rx="8" fill="#fff8e7" stroke="#daa520" stroke-width="1.5"/>
+  <text x="230" y="105" text-anchor="middle" fill="#8a6d00" font-size="14" font-weight="bold">Distill</text>
+  <text x="230" y="122" text-anchor="middle" fill="#999" font-size="11">蒸馏成库</text>
+  
+  <rect x="320" y="80" width="120" height="60" rx="8" fill="#fff8e7" stroke="#daa520" stroke-width="1.5"/>
+  <text x="380" y="105" text-anchor="middle" fill="#8a6d00" font-size="14" font-weight="bold">Graph</text>
+  <text x="380" y="122" text-anchor="middle" fill="#999" font-size="11">图谱成网</text>
+  
+  <rect x="470" y="80" width="120" height="60" rx="8" fill="#fff8e7" stroke="#daa520" stroke-width="1.5"/>
+  <text x="530" y="105" text-anchor="middle" fill="#8a6d00" font-size="14" font-weight="bold">Hypothesize</text>
+  <text x="530" y="122" text-anchor="middle" fill="#999" font-size="11">语义假说</text>
+  
+  <rect x="620" y="80" width="120" height="60" rx="8" fill="#fff8e7" stroke="#daa520" stroke-width="2"/>
+  <text x="680" y="105" text-anchor="middle" fill="#8a6d00" font-size="14" font-weight="bold">Discover</text>
+  <text x="680" y="122" text-anchor="middle" fill="#999" font-size="11">研究问题</text>
+  
+  <!-- Arrows -->
+  <line x1="140" y1="110" x2="170" y2="110" stroke="#daa520" stroke-width="1.5"/>
+  <polygon points="168,107 175,110 168,113" fill="#daa520"/>
+  <line x1="290" y1="110" x2="320" y2="110" stroke="#daa520" stroke-width="1.5"/>
+  <polygon points="318,107 325,110 318,113" fill="#daa520"/>
+  <line x1="440" y1="110" x2="470" y2="110" stroke="#daa520" stroke-width="1.5"/>
+  <polygon points="468,107 475,110 468,113" fill="#daa520"/>
+  <line x1="590" y1="110" x2="620" y2="110" stroke="#daa520" stroke-width="1.5"/>
+  <polygon points="618,107 625,110 618,113" fill="#daa520"/>
+  
+  <!-- Dao labels -->
+  <text x="80" y="180" text-anchor="middle" fill="#daa520" font-size="28" opacity="0.3" font-weight="bold">道</text>
+  <text x="230" y="180" text-anchor="middle" fill="#daa520" font-size="28" opacity="0.4" font-weight="bold">一</text>
+  <text x="380" y="180" text-anchor="middle" fill="#daa520" font-size="28" opacity="0.5" font-weight="bold">二</text>
+  <text x="530" y="180" text-anchor="middle" fill="#daa520" font-size="28" opacity="0.6" font-weight="bold">三</text>
+  <text x="680" y="180" text-anchor="middle" fill="#daa520" font-size="22" opacity="0.7" font-weight="bold">万物</text>
+  
+  <!-- Stats -->
+  <text x="400" y="230" text-anchor="middle" fill="#666" font-size="13">Validated across 4 domains: World Models · Venus Cloud · Solar Wind</text>
+  <text x="400" y="255" text-anchor="middle" fill="#b8860b" font-size="16" font-weight="bold">40 papers → 631 nodes → 580 hypotheses → Top-N research questions</text>
+  
+  <!-- Footer -->
+  <text x="400" y="295" text-anchor="middle" fill="#bbb" font-size="11">Author: Wang Runyuan (王润圆) · Kunming Medical University · CC BY-NC 4.0</text>
+</svg>
