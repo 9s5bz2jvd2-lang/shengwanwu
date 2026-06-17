@@ -1,0 +1,39 @@
+{
+  "artifacts": {
+    "artifact_cards": "work/runs/venus_planetary_science_v04_spine/artifact_cards.jsonl",
+    "final_report": "work/runs/venus_planetary_science_v04_spine/final_report.md",
+    "gaps": "work/runs/venus_planetary_science_v04_spine/gaps.jsonl",
+    "hypothesis_candidates": "work/runs/venus_planetary_science_v04_spine/hypothesis_candidates.jsonl",
+    "lineage": "work/runs/venus_planetary_science_v04_spine/lineage.jsonl",
+    "mother_patch": "work/runs/venus_planetary_science_v04_spine/mother_patch.jsonl",
+    "return_contract": "work/runs/venus_planetary_science_v04_spine/return_contract.md",
+    "review_state": "work/runs/venus_planetary_science_v04_spine/review_state.jsonl",
+    "validation_notes": "work/runs/venus_planetary_science_v04_spine/validation_notes.md",
+    "validations": "work/runs/venus_planetary_science_v04_spine/validations.jsonl"
+  },
+  "completed_states": [
+    "G1_INPUT",
+    "G2_FIELD",
+    "G3_MAP",
+    "G4_GENERATE",
+    "G4_VALIDATE",
+    "G5_RETURN"
+  ],
+  "counts": {
+    "gaps": 80,
+    "hypotheses": 94,
+    "lineage": 94,
+    "mother_patches": 94,
+    "nodes": 175,
+    "review_states": 94,
+    "sources": 6,
+    "validations": 94
+  },
+  "current_state": "G5_RETURN",
+  "focus": "planetary science of Venus clouds: atmospheric dynamics, cloud microphysics, radiative balance, chemistry, observations, and habitability boundaries",
+  "kb_path": "knowledge_base_v04",
+  "loop_id": "venus_planetary_science_v04_spine",
+  "loop_version": "v0.4",
+  "next_action": "next loop: take supported hypotheses to a test gate",
+  "updated_at": "2026-06-17T12:16:03.563828+00:00"
+}

@@ -1,0 +1,16 @@
+[project]
+name = "shengwanwu-loop"
+version = "0.1.0"
+description = "Harness-agnostic Shengwanwu Loop: add distilled Markdown, map gaps, generate hypotheses, crystallize return contracts."
+requires-python = ">=3.9"
+dependencies = [
+  "fastapi>=0.110",
+  "uvicorn>=0.27",
+  "python-multipart>=0.0.9",
+]
+
+[project.scripts]
+shengwanwu-loop = "shengwanwu_loop.cli:main"
+
+[tool.setuptools]
+packages = ["shengwanwu_loop"]

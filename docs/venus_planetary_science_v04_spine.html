@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>生万物 v0.4｜金星行星科学重跑与论文已证事实</title>
+  <style>
+    :root{
+      --bg:#f7f2e8; --paper:#fffdf7; --ink:#24201a; --muted:#6f6557;
+      --gold:#b87924; --red:#9d3f34; --blue:#2e5d7a; --green:#496b4a;
+      --line:#e5d8c3; --soft:#fbf5ea; --shadow:0 18px 45px rgba(84,55,20,.12);
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(135deg,#f7f2e8 0%,#efe4d2 100%);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Noto Sans CJK SC","Microsoft YaHei",sans-serif;line-height:1.7}
+    .page{max-width:1080px;margin:36px auto;padding:0 22px 60px}
+    header{background:radial-gradient(circle at top right,rgba(184,121,36,.18),transparent 42%),var(--paper);border:1px solid var(--line);border-radius:28px;padding:34px 36px;box-shadow:var(--shadow)}
+    .eyebrow{color:var(--gold);font-weight:700;letter-spacing:.08em;font-size:14px;text-transform:uppercase}
+    h1{font-size:34px;line-height:1.22;margin:10px 0 12px;letter-spacing:-.02em}
+    .subtitle{font-size:17px;color:var(--muted);max-width:860px}
+    .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.badge{border:1px solid var(--line);background:#fff8ec;border-radius:999px;padding:6px 12px;font-size:13px;color:#5f4b33}
+    section{margin-top:22px;background:var(--paper);border:1px solid var(--line);border-radius:24px;padding:26px 28px;box-shadow:0 10px 28px rgba(84,55,20,.08)}
+    h2{font-size:23px;margin:0 0 14px;border-left:5px solid var(--gold);padding-left:12px}h3{font-size:18px;margin:18px 0 8px;color:#3b3023}
+    .lead{font-size:17px}.note{background:#fff5df;border:1px solid #ecd2a4;border-radius:18px;padding:16px 18px;color:#5b4226}.danger{background:#fff0ed;border-color:#efc3bb;color:#68332d}.ok{background:#edf6ef;border-color:#c8dfcc;color:#304d34}
+    .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.stat{background:var(--soft);border:1px solid var(--line);border-radius:18px;padding:16px}.stat b{display:block;font-size:28px;color:var(--blue);line-height:1.1}.stat span{color:var(--muted);font-size:13px}
+    table{width:100%;border-collapse:separate;border-spacing:0;margin-top:12px;overflow:hidden;border-radius:16px;border:1px solid var(--line);font-size:14px}th,td{vertical-align:top;text-align:left;padding:12px 14px;border-bottom:1px solid var(--line)}th{background:#f4ead8;color:#4d3b24;font-weight:800}tr:last-child td{border-bottom:0}td:first-child{font-weight:700;color:var(--red);white-space:nowrap}.node{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;background:#f5efe3;padding:2px 6px;border-radius:8px;color:#5a3b14;white-space:nowrap}
+    .two{display:grid;grid-template-columns:1fr 1fr;gap:16px}.card{background:var(--soft);border:1px solid var(--line);border-radius:18px;padding:16px 18px}.card h3{margin-top:0}.quote{border-left:4px solid var(--blue);padding:8px 0 8px 14px;color:#314a5c;background:#f1f7fa;border-radius:0 12px 12px 0;font-style:italic}.small{font-size:13px;color:var(--muted)}
+    ul{padding-left:1.25em}.footer{color:var(--muted);font-size:13px;text-align:center;margin-top:18px}.path{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:12px;color:#5f5346;word-break:break-all;background:#f6efe4;border-radius:10px;padding:7px 9px;display:inline-block}
+    @media(max-width:760px){.grid,.two{grid-template-columns:1fr}h1{font-size:27px}header,section{padding:22px 18px}.page{margin:18px auto;padding:0 12px 36px}table{font-size:13px}}
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <div class="eyebrow">Sheng Wanwu v0.4 · Venus Planetary Science Rerun</div>
+      <h1>金星云层论文事实与“生万物”候选链</h1>
+      <p class="subtitle">本页整理自已蒸馏之金星论文节点与 v0.4 三根骨重跑结果。核心边界：论文事实可称“已报告/已观测”；由事实导出的方向可称“候选解释”；生万物生成之假说仍不可称“已证实”。</p>
+      <div class="badges">
+        <span class="badge">三根骨：lineage / mother_patch / review_state</span>
+        <span class="badge">6 篇金星论文蒸馏源</span>
+        <span class="badge">94 条候选假说</span>
+        <span class="badge">28 条 supported / pass</span>
+      </div>
+    </header>
+
+    <section>
+      <h2>一、先定证据层级</h2>
+      <div class="two">
+        <div class="card ok"><h3>可稳言者</h3><p>论文节点中载明、观测、实验或模型报告之事实；此类可写为“论文已报告 / 已观测 / 已有实验支持”。</p></div>
+        <div class="card"><h3>可推演者</h3><p>由多条事实连成之候选解释；宜写为“supported candidate / 候选方向 / 有待验证之解释”。</p></div>
+        <div class="card danger"><h3>不可越界者</h3><p>“生万物”生成的 94 条候选链，虽有 28 条通过六眼初筛，仍不可称为“已证实结论”。</p></div>
+        <div class="card"><h3>可用话术</h3><p>“已有论文支持若干关键事实；生万物据此生成可追溯候选链，待后续文献、观测与模拟验证。”</p></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>二、本轮 v0.4 行星科学重跑概览</h2>
+      <div class="grid">
+        <div class="stat"><b>80</b><span>gaps</span></div>
+        <div class="stat"><b>94</b><span>hypotheses</span></div>
+        <div class="stat"><b>28</b><span>supported / pass</span></div>
+        <div class="stat"><b>66</b><span>needs_review / contested</span></div>
+      </div>
+      <p class="note" style="margin-top:16px">本轮不只是改 focus 名称；已新增 <b>PlanetaryScienceSynthesisOperator</b>，专门拉通 atmospheric dynamics、cloud microphysics、radiative balance、atmospheric chemistry、observational constraints、habitability boundaries 六类行星科学域。</p>
+      <p class="small">Run 路径：<span class="path">work/shengwanwu-loop/work/runs/venus_planetary_science_v04_spine/</span></p>
+    </section>
+
+    <section>
+      <h2>三、目前论文已报告 / 已观测之九条硬事实</h2>
+      <table>
+        <thead><tr><th>序</th><th>事实</th><th>证据节点</th><th>边界说明</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>金星云层主成分为浓硫酸 H<sub>2</sub>SO<sub>4</sub>，质量分数约 75%–98%；水为次要成分。</td><td><span class="node">v1_003</span></td><td>云层成分事实；可作为后续化学与宜居性讨论基底。</td></tr>
+          <tr><td>2</td><td>上层云为光化学云：SO<sub>2</sub> 与 H<sub>2</sub>O 参与光化学反应形成 H<sub>2</sub>SO<sub>4</sub> 蒸气，随后凝结在凝结核上。</td><td><span class="node">v1_008</span></td><td>说明上层云质量负载受光化学过程调节。</td></tr>
+          <tr><td>3</td><td>云顶 H<sub>2</sub>SO<sub>4</sub> 光化学生成后，约 86% 向上输运并重新凝结入云滴，约 14% 向下扩散并热分解，形成闭合硫循环。</td><td><span class="node">v1_023</span></td><td>定量模型结果；应用时须注明为模型报告。</td></tr>
+          <tr><td>4</td><td>云层温压约 300–350 K、0.1–1 bar，但云滴主要为 H<sub>2</sub>SO<sub>4</sub>，水活度远低于已知极端微生物可承受范围。</td><td><span class="node">v1_038</span></td><td>宜居性判断不可只看温压；水活度/浓硫酸是硬边界。</td></tr>
+          <tr><td>5</td><td>金星云酸度观测存在显著不确定性：高度难确定、遥感窗口更敏感于云不透明度、硫酸光谱插值有非线性等。</td><td><span class="node">v1_004</span></td><td>这是观测边界，适合升格为后续研究问题。</td></tr>
+          <tr><td>6</td><td>Lefèvre 等小尺度湍流模型给云层 Kzz 约 10<sup>6</sup>–10<sup>8</sup> cm²/s，高于多数旧大气化学输运模型；且 Kzz 依物种寿命而变。</td><td><span class="node">v1_016</span></td><td>动力学与化学耦合关键事实；须注明为模型推导。</td></tr>
+          <tr><td>7</td><td>未知 UV 吸收体与 0.32–0.5 μm 低反照率及云纹运动相关；320–400 nm 吸收增强不能由 SO<sub>2</sub> 完全解释；约贡献云顶太阳加热 50%。</td><td><span class="node">v1_026</span></td><td>可作为行星科学枢纽问题：反照率、加热、云微物理与成分未明。</td></tr>
+          <tr><td>8</td><td>UV 吸收体主要位于上云区 &gt;57 km；赤道云较中高纬更暗；365 nm 反照率有强年代变化，丰度可变约 2 倍。</td><td><span class="node">v1_027</span></td><td>提示空间差异与年代变化；不可直接判定吸收体成分。</td></tr>
+          <tr><td>9</td><td>20 种生物氨基酸中，19 种的氨基酸骨架在浓硫酸中保持完整；色氨酸完全反应降解。</td><td><span class="node">v5_001</span></td><td>有机物稳定性实验支持；不能由此推出生命存在。</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>四、可由事实导出的候选方向</h2>
+      <div class="two">
+        <div class="card"><h3>1. 云现象须跨域解释</h3><p>金星云层现象不能只看化学；需联动动力学、辐射、云微物理、观测高度与时间变化。</p></div>
+        <div class="card"><h3>2. 宜居性须守硬边界</h3><p>温压虽较温和，但水活度与浓硫酸环境极端；宜居性讨论须先过此边界。</p></div>
+        <div class="card"><h3>3. UV 吸收体是枢纽</h3><p>它连接反照率、云顶加热、纬向差异、年代变化与云微物理，是行星科学主问题之一。</p></div>
+        <div class="card"><h3>4. 有机物稳定性需谨慎表达</h3><p>氨基酸骨架稳定性比旧直觉乐观；但仅能说明“有机物未必一概不稳”，不可推出生命结论。</p></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>五、生万物本轮生成之代表性候选链</h2>
+      <p class="quote">The coupling between radiative balance, UV/IR signatures, and cloud microphysics is under-specified.</p>
+      <p class="quote">A planetary-scale coupling across the domains named in gap may explain the Venus cloud behavior better than treating each domain separately.</p>
+      <p class="quote">The apparent signal may be controlled by a scale mismatch: local chemistry or microphysics is being interpreted as a planet-wide atmospheric pattern.</p>
+      <p class="note danger"><b>边界：</b>以上是“候选链 / supported candidate”，不是“论文已证实结论”。可用于提出研究问题、设计验证路线、组织综述论证；不可包装为既定事实。</p>
+    </section>
+
+    <section>
+      <h2>六、三根骨之意义</h2>
+      <ul>
+        <li><b>lineage：</b>每条假说知其父母：由何 source / unit / node / gap 而生。</li>
+        <li><b>mother_patch：</b>每条假说若成立，应如何改母体：新增、弱化、升格为问题、设回滚条件；但只生成待审补丁，不自动改母。</li>
+        <li><b>review_state：</b>每条假说有 candidate / contested / reviewed / supported / rejected 阶梯；生成可快，升格须慢。</li>
+      </ul>
+    </section>
+
+    <div class="footer">整理时间：2026-06-17 · 文件：venus_planetary_science_evidence_report.html</div>
+  </main>
+</body>
+</html>

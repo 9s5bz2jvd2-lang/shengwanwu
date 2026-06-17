@@ -17,6 +17,45 @@
 
 ---
 
+
+## 最新进展 / Latest Update — V0.4 三根骨 + 金星行星科学重跑
+
+2026-06-17，《生万物》V0.4 新增“三根骨”：
+
+- `lineage.jsonl`：每条假说保留 source → node → gap → hypothesis 血脉。
+- `mother_patch.jsonl`：每条假说生成“若成立，应如何修改母体世界模型”的待审补丁。
+- `review_state.jsonl`：每条假说进入 candidate / contested / reviewed / supported / rejected 审稿阶梯。
+
+并新增 `PlanetaryScienceSynthesisOperator`，用于把金星云层问题从单纯物理化学，拉通为行星科学问题：大气动力学、云微物理、辐射平衡、大气化学、观测约束、宜居边界共同参与 gap 生成。
+
+本轮以 6 篇已蒸馏金星论文为源，重跑得到：
+
+| 指标 / Metric | 数量 |
+|---|---:|
+| gaps | 80 |
+| hypotheses | 94 |
+| supported / pass | 28 |
+| needs_review / contested | 66 |
+| lineage / mother_patch / review_state | 94 / 94 / 94 |
+
+代表性行星科学缺口：
+
+> The coupling between radiative balance, UV/IR signatures, and cloud microphysics is under-specified.
+
+代表性 supported candidate：
+
+> A planetary-scale coupling across the domains named in gap may explain the Venus cloud behavior better than treating each domain separately.
+
+完整展示：
+
+- [V0.4 最新假说成功：金星行星科学重跑](docs/latest_hypothesis_success_v04.md)
+- [HTML 展示页：论文事实与生万物候选链](docs/venus_planetary_science_v04_spine.html)
+- 示例产物：`examples/venus_planetary_v04_spine/`
+
+> 证据边界：论文节点中载明者可称“已报告 / 已观测 / 已有实验支持”；《生万物》生成之 94 条仍是候选链，不可称为已证实结论。
+
+---
+
 ## 快速开始 / Quick Start
 
 ```bash
