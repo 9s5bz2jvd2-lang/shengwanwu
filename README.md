@@ -18,6 +18,33 @@
 ---
 
 
+## 最新进展 / Latest Update — V0.5 关系显性化 + 金星 V05/T1 试跑
+
+2026-06-24，《生万物》V0.5 / T1 新增显式关系层：
+
+- `relations.jsonl`：把节点之间的候选证据关系显性化，不再只靠隐含上下文。
+- `build_relations()` / `python -m shengwanwu_loop.cli link --kb <kb>`：可为既有知识库补建关系层。
+- `validate-graph`：检查 relation → node → gap → hypothesis 的结构一致性。
+- `from_relations`：每个 gap / hypothesis 回指其所依赖的候选关系边。
+
+本轮金星 V05/T1 试跑得到：
+
+| 指标 / Metric | 数量 |
+|---|---:|
+| sources | 6 |
+| nodes | 175 |
+| relations | 163 |
+| gaps | 80 |
+| hypotheses | 94 |
+| validations / lineage / mother_patch / review_state | 94 / 94 / 94 / 94 |
+| `validate-graph` | 0 errors / 0 warnings |
+
+示例产物：`examples/venus_planetary_science_v05_t1/`
+
+> 证据边界：`relations.jsonl` 表示“蒸馏节点之间的候选证据关系”，不是已验证因果结论；所有假说与 mother_patch 仍须人工审阅后方可升格。
+
+---
+
 ## 最新进展 / Latest Update — V0.4 三根骨 + 金星行星科学重跑
 
 2026-06-17，《生万物》V0.4 新增“三根骨”：

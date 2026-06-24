@@ -973,6 +973,11 @@ def run_map(kb: Path, out: Path, focus: str, max_gaps: int) -> List[dict]:
     if not nodes:
         raise SystemExit(f"No nodes in {kb / 'nodes.jsonl'}; run add first.")
     gaps = build_gaps_v04(nodes, focus, max_gaps=max_gaps)
+
+    # T1: build the relation layer from these exact gaps, then stamp each gap
+    # with its derived `from_relations` (candidate evidence edges, not facts).
+    rel_count = _attach_relations(kb, out, nodes, gaps, focus)
+
     write_jsonl(out / "gaps.jsonl", gaps)
     # Merge into persistent KB gaps (idempotent by gap_id).
     kb_gaps = read_jsonl(kb / "gaps.jsonl")
@@ -980,10 +985,33 @@ def run_map(kb: Path, out: Path, focus: str, max_gaps: int) -> List[dict]:
     new_kb_gaps = [g for g in gaps if g["gap_id"] not in known]
     append_jsonl(kb / "gaps.jsonl", new_kb_gaps)
     write_loop_state(out, kb, "G3_MAP", ["G1_INPUT", "G2_FIELD", "G3_MAP"],
-                     focus, {"nodes": len(nodes), "gaps": len(gaps)},
+                     focus, {"nodes": len(nodes), "gaps": len(gaps), "relations": rel_count},
                      "generate hypotheses (hypothesis command)")
     print(f"[map] {len(gaps)} gaps -> {out / 'gaps.jsonl'} ({len(new_kb_gaps)} new in KB)")
+    print(f"[map] relation layer: {rel_count} relations linked into gaps' from_relations")
     return gaps
+
+
+def _attach_relations(kb: Path, out: Path, nodes: List[dict], gaps: List[dict],
+                      focus: str) -> int:
+    """T1 glue: build relations from the run's gaps and stamp `from_relations`.
+
+    Writes ``relations.jsonl`` to both the KB (so `validate-graph --kb` sees the
+    relation layer) and the run dir (run-scoped snapshot), and mutates ``gaps``
+    in place to add a ``from_relations`` list.  Relations remain candidate
+    evidence edges; this never asserts a verified cause.  Returns the relation
+    count.  Isolated here so the import of `graph` stays local (avoids a
+    graph<->v04 import cycle).
+    """
+    from . import graph
+
+    built = graph.build_relations(kb, focus=focus, gaps=gaps)
+    gap_relations = built["gap_relations"]
+    for g in gaps:
+        g["from_relations"] = gap_relations.get(g.get("gap_id"), [])
+    # Run-scoped snapshot of the exact relations this run used.
+    write_jsonl(out / graph.RELATIONS_FILE, built["relations"])
+    return built["count"]
 
 
 # ---------------------------------------------------------------------------
@@ -1003,7 +1031,13 @@ def run_hypothesis(kb: Path, out: Path, focus: str, max_per_gap: int) -> List[di
 
     hyps: List[dict] = []
     for gap in gaps:
-        hyps.extend(hypotheses_from_gap(gap, nodes_by_id, focus, max_per_gap))
+        gap_hyps = hypotheses_from_gap(gap, nodes_by_id, focus, max_per_gap)
+        # T1: propagate the gap's candidate relation edges onto each hypothesis,
+        # so a hypothesis points back to relation evidence, not only to nodes.
+        from_relations = gap.get("from_relations", []) or []
+        for h in gap_hyps:
+            h["from_relations"] = list(from_relations)
+        hyps.extend(gap_hyps)
     # back-fill related_hypotheses on the run gaps
     by_gap: Dict[str, List[str]] = {}
     for h in hyps:

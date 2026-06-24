@@ -649,6 +649,51 @@ def cmd_v04_run(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_v04_link(args: argparse.Namespace) -> int:
+    """T1: (re)build the relation layer (relations.jsonl) for a knowledge base.
+
+    Deterministic, stdlib-only.  Stands alone so an operator can materialize or
+    rebuild relations for any KB without running the full pipeline.  Relations
+    are candidate literature-distillation edges, never verified causal facts.
+    """
+    from . import graph
+
+    kb = Path(args.kb)
+    if not kb.exists():
+        print(f"[link] kb_dir does not exist: {kb}")
+        return 1
+    result = graph.build_relations(kb, focus=args.focus, max_gaps=args.max_gaps)
+    for w in result.get("warnings", []):
+        print(f"  [warn] {w}")
+    print(f"[link] wrote {result['count']} relations -> {kb / graph.RELATIONS_FILE}")
+    print(f"[link] gaps with >=1 relation: {sum(1 for v in result['gap_relations'].values() if v)}")
+    print("[link] NOTE: relations are candidate evidence edges between distilled "
+          "units, not verified causal facts (human_review_required=true).")
+    return 0
+
+
+def cmd_v04_validate_graph(args: argparse.Namespace) -> int:
+    """Read-only structural check of the relation graph (T0 contract)."""
+    from . import graph
+
+    kb = Path(args.kb)
+    report = graph.validate_graph(kb)
+    summary = report.get("summary", {})
+    print(f"[validate-graph] kb={kb} "
+          f"nodes={summary.get('nodes', 0)} relations={summary.get('relations', 0)} "
+          f"gaps={summary.get('gaps', 0)} hypotheses={summary.get('hypotheses', 0)}")
+    for w in report["warnings"]:
+        print(f"  [warn] {w['check']}: {w['message']}")
+    for e in report["errors"]:
+        print(f"  [ERROR] {e['check']}: {e['message']}")
+    if report["errors"]:
+        print(f"[validate-graph] FAIL: {len(report['errors'])} error(s), "
+              f"{len(report['warnings'])} warning(s)")
+        return 1
+    print(f"[validate-graph] OK: 0 errors, {len(report['warnings'])} warning(s)")
+    return 0
+
+
 def cmd_v04_resume(args: argparse.Namespace) -> int:
     """Idempotent resume: pick up the V0.4 run from its loop_state."""
     from . import v04
@@ -804,6 +849,21 @@ def build_parser() -> argparse.ArgumentParser:
     r4.add_argument("--write-report", action="store_true")
     r4.add_argument("--consolidate", action="store_true")
     r4.set_defaults(func=cmd_v04_return)
+
+    # ---- V0.4 link (T1: build/rebuild relations.jsonl) ----
+    lk = sub.add_parser("link",
+                        help="V0.4 T1: build/rebuild the relation layer (relations.jsonl) for a KB")
+    lk.add_argument("--kb", default="knowledge_base_v04")
+    lk.add_argument("--focus", default="")
+    lk.add_argument("--max-gaps", type=int, default=200,
+                    help="cap on gaps used to derive relations (default 200)")
+    lk.set_defaults(func=cmd_v04_link)
+
+    # ---- V0.4 validate-graph (read-only relation-graph contract check) ----
+    vg = sub.add_parser("validate-graph",
+                        help="V0.4: read-only structural check of the relation graph (T0)")
+    vg.add_argument("--kb", default="knowledge_base_v04")
+    vg.set_defaults(func=cmd_v04_validate_graph)
 
     # ---- V0.4 run (end-to-end) ----
     rn = sub.add_parser("run", help="V0.4: end-to-end five-gate pipeline")
